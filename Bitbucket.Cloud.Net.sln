@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bitbucket.Cloud.Net", "src\Bitbucket.Cloud.Net\Bitbucket.Cloud.Net.csproj", "{F691315C-F764-4C11-BDDA-392F922C0F7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{7B6EADEC-4D55-4894-A8AE-14B68A09B0C5}"
+	ProjectSection(SolutionItems) = preProject
+		build\build.ps1 = build\build.ps1
+		build\test.ps1 = build\test.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CD852AF8-36E1-49C0-8890-B15C78D9626B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bitbucket.Cloud.Net.Tests", "test\Bitbucket.Cloud.Net.Tests\Bitbucket.Cloud.Net.Tests.csproj", "{DB962D57-EB52-45A5-9914-630C2E90FE37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{820C4E4F-392D-4BFD-9552-8C97E932E7D9}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		global.json = global.json
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F691315C-F764-4C11-BDDA-392F922C0F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F691315C-F764-4C11-BDDA-392F922C0F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F691315C-F764-4C11-BDDA-392F922C0F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F691315C-F764-4C11-BDDA-392F922C0F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB962D57-EB52-45A5-9914-630C2E90FE37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB962D57-EB52-45A5-9914-630C2E90FE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB962D57-EB52-45A5-9914-630C2E90FE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB962D57-EB52-45A5-9914-630C2E90FE37} = {CD852AF8-36E1-49C0-8890-B15C78D9626B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62CA356F-13F6-424D-93A4-A94F1F8005CC}
+	EndGlobalSection
+EndGlobal

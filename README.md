@@ -44,9 +44,9 @@ Client for Bitbucket Cloud
 				* [ ] Values
 	* [ ] Hook Events
 		* [ ] Subject Type
-	* [ ] Repositories
+	* [X] Repositories
 		* [ ] User Name
-			* [ ] Repo Slug
+			* [X] Repo Slug
 				* [ ] Branch Restrictions
 					* [ ] Id
 				* [ ] Commit
@@ -165,7 +165,7 @@ Client for Bitbucket Cloud
 			* [ ] Repositories
 			* [ ] Search
 				* [ ] Code
-	* [ ] User
+	* [X] User
 		* [ ] Emails
 			* [ ] Email
 		* [ ] Permissions

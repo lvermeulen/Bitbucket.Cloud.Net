@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard1.4</TargetFrameworks>
+    <Copyright>Copyright 2018 by Luk Vermeulen. All rights reserved.</Copyright>
+    <Authors>Luk Vermeulen</Authors>
+    <Company>Luk Vermeulen</Company>
+    <PackageIconUrl>https://i.imgur.com/OsDAzyV.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/lvermeulen/Bitbucket.Cloud.Net</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/lvermeulen/Bitbucket.Cloud.Net</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/lvermeulen/Bitbucket.Cloud.Net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>bitbucket cloud org</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

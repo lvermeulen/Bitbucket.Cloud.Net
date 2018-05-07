@@ -1,4 +1,5 @@
-﻿using Flurl;
+﻿using Bitbucket.Cloud.Net.Common;
+using Flurl;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
@@ -10,20 +11,31 @@ namespace Bitbucket.Cloud.Net
     {
         private static readonly ISerializer s_serializer = new NewtonsoftJsonSerializer(new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
 
+        private readonly Authentication _auth = new Authentication();
         private readonly Url _url;
-        private readonly string _userName;
-        private readonly string _password;
 
-        public BitbucketCloudClient(string url, string userName, string password)
+        private BitbucketCloudClient(string url)
         {
             _url = url;
-            _userName = userName;
-            _password = password;
+        }
+
+        public BitbucketCloudClient(string url, string consumerKey, string consumerSecret, string oauth)
+            : this(url)
+        {
+            _auth.ConsumerKey = consumerKey;
+            _auth.ConsumerSecret = consumerSecret;
+        }
+
+        public BitbucketCloudClient(string url, string userName, string password)
+            : this(url)
+        {
+            _auth.UserName = userName;
+            _auth.Password = password;
         }
 
         public IFlurlRequest GetBaseUrl(string path) => new Url(_url)
             .AppendPathSegment(path)
             .ConfigureRequest(settings => settings.JsonSerializer = s_serializer)
-            .WithBasicAuth(_userName, _password);
+            .WithAuthentication(_auth);
     }
 }

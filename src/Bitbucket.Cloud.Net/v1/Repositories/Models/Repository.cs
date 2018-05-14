@@ -28,7 +28,7 @@ namespace Bitbucket.Cloud.Net.v1.Repositories.Models
         [JsonProperty("read_only")]
         public bool ReadOnly { get; set; }
         [JsonProperty("fork_of")]
-        public object ForkOf { get; set; }
+        public Repository ForkOf { get; set; }
         [JsonProperty("mq_of")]
         public object MqOf { get; set; }
         [JsonProperty("followers_count")]

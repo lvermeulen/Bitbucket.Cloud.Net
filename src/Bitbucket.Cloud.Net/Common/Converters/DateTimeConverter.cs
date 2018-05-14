@@ -11,7 +11,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
         public static string ConvertToString(DateTime? value)
         {
-            return value.HasValue 
+            return value.HasValue
                 ? ConvertToString(value.Value)
                 : null;
         }

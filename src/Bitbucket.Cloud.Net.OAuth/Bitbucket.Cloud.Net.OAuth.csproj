@@ -15,10 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="2.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Bitbucket.Cloud.Net.Auth\Bitbucket.Cloud.Net.Auth.csproj" />
+    <PackageReference Include="IdentityModel" Version="3.6.1" />
   </ItemGroup>
 
 </Project>

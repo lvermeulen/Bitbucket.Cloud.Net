@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bitbucket.Cloud.Net.Auth\Bitbucket.Cloud.Net.Auth.csproj" />
+    <ProjectReference Include="..\Bitbucket.Cloud.Net.OAuth\Bitbucket.Cloud.Net.OAuth.csproj" />
   </ItemGroup>
 
 </Project>

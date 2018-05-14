@@ -5,7 +5,7 @@ using Bitbucket.Cloud.Net.v2.Repositories;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
-namespace Bitbucket.Cloud.Net.Tests
+namespace Bitbucket.Cloud.Net.OAuth.Tests
 {
     public class BitbucketCloudClientShould
     {
@@ -18,12 +18,12 @@ namespace Bitbucket.Cloud.Net.Tests
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            Client = new BitbucketCloudClient(configuration["url"], new BasicAuthentication { UserName = configuration["username"], Password = configuration["password"] });
+            Client = new BitbucketCloudClient(configuration["url"], new OAuthAuthentication { ConsumerKey = configuration["consumerKey"], ConsumerSecret = configuration["consumerSecret"] });
         }
 
         [Theory]
         [InlineData("tobaniaeps", "DescEnumGenerator")]
-        public async Task UseBasicAuthenticationAsync(string userName, string repositorySlug)
+        public async Task UseOAuthAsync(string userName, string repositorySlug)
         {
             var result = await Client.GetRepositoryAsync(userName, repositorySlug).ConfigureAwait(false);
             Assert.NotNull(result);

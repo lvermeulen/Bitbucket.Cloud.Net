@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard1.4</TargetFrameworks>
-    <Copyright>Copyright 2018 by Luk Vermeulen. All rights reserved.</Copyright>
+    <Copyright>Copyright 2020 by Luk Vermeulen. All rights reserved.</Copyright>
     <Authors>Luk Vermeulen</Authors>
     <Company>Luk Vermeulen</Company>
     <PackageIconUrl>https://i.imgur.com/OsDAzyV.png</PackageIconUrl>

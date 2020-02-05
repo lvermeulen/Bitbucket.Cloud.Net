@@ -149,7 +149,7 @@ C# Client for Bitbucket Cloud
     * [X] User
         * [X] Emails
             * [X] Email
-        * [ ] Permissions
+        * [X] Permissions
             * [X] Repositories
             * [X] Teams
     * [ ] Users

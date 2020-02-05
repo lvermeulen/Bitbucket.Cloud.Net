@@ -1,24 +1,23 @@
 using System.IO;
 using System.Threading.Tasks;
-using Bitbucket.Cloud.Net.v2.Repositories;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
 namespace Bitbucket.Cloud.Net.Tests
 {
-    public class BitbucketCloudClientShould
+    public partial class BitbucketCloudClientShould
     {
         private readonly IConfigurationRoot _configuration;
-        protected readonly BitbucketCloudClient Client;
+        private readonly BitbucketCloudClient _client;
 
-        protected BitbucketCloudClientShould()
+        public BitbucketCloudClientShould()
         {
             _configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            Client = new BitbucketCloudClient(_configuration["url"], _configuration["username"], _configuration["password"]);
+            _client = new BitbucketCloudClient(_configuration["url"], _configuration["username"], _configuration["password"]);
         }
 
         [Fact]

@@ -5,6 +5,9 @@ namespace Bitbucket.Cloud.Net.v2.Models
 {
     public class Links : OwnerLinks
     {
+        public Link Followers { get; set; }
+        public Link Following { get; set; }
+        public Link Repositories { get; set; }
         public Link Watchers { get; set; }
         public Link Branches { get; set; }
         public Link Tags { get; set; }

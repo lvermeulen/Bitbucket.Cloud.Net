@@ -2,7 +2,7 @@
 
 namespace Bitbucket.Cloud.Net.Common.Models.v2
 {
-    public class PagedResultsV2<T>
+    public class PagedResults<T>
     {
         public int Size { get; set; }
         public int Page { get; set; }

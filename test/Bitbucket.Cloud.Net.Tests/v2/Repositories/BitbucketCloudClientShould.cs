@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Bitbucket.Cloud.Net.v2.Repositories;
 using Xunit;
 
-namespace Bitbucket.Cloud.Net.Tests.v2.Repositories
+namespace Bitbucket.Cloud.Net.Tests
 {
-    public class BitbucketCloudClientShould : Tests.BitbucketCloudClientShould
+    public partial class BitbucketCloudClientShould
     {
         [Fact]
         public async Task GetRepositoriesAsync()
         {
-            var result = await Client.GetRepositoriesAsync(1, DateTime.Now.AddYears(-1)).ConfigureAwait(false);
+            var result = await _client.GetRepositoriesAsync(1, DateTime.Now.AddYears(-1)).ConfigureAwait(false);
             Assert.NotNull(result);
         }
 
         [Theory]
-        [InlineData("tobaniaeps", "descenumgenerator")]
+        [InlineData("luve", "test")]
         public async Task GetRepositoryAsync(string userName, string repositorySlug)
         {
-            var result = await Client.GetRepositoryAsync(userName, repositorySlug).ConfigureAwait(false);
+            var result = await _client.GetRepositoryAsync(userName, repositorySlug).ConfigureAwait(false);
             Assert.NotNull(result);
         }
     }

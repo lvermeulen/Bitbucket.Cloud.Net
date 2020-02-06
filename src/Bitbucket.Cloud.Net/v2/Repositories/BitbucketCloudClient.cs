@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common.Converters;
-using Bitbucket.Cloud.Net.Common.Models.v2;
-using Bitbucket.Cloud.Net.v2.Repositories.Models;
+using Bitbucket.Cloud.Net.Common.Models;
+using Bitbucket.Cloud.Net.Models;
 using Flurl.Http;
 
+// ReSharper disable once CheckNamespace
 namespace Bitbucket.Cloud.Net
 {
     public partial class BitbucketCloudClient
@@ -15,7 +16,6 @@ namespace Bitbucket.Cloud.Net
         private IFlurlRequest GetRepositoriesUrl(string path) => GetRepositoriesUrl()
             .AppendPathSegment(path);
 
-        //[Scope: repository]
         public async Task<IEnumerable<Repository>> GetRepositoriesAsync(int? maxPages = null, DateTime? after = null)
         {
             var queryParamValues = new Dictionary<string, object>
@@ -31,7 +31,6 @@ namespace Bitbucket.Cloud.Net
                 .ConfigureAwait(false);
         }
 
-        //[Scope: repository]
         public async Task<Repository> GetRepositoryAsync(string userName, string repositorySlug)
         {
             return await GetRepositoriesUrl($"/{userName}/{repositorySlug}")
@@ -39,7 +38,6 @@ namespace Bitbucket.Cloud.Net
                 .ConfigureAwait(false);
         }
 
-        //[Scope: repository:admin]
         public async Task<Repository> CreateRepositoryAsync(string userName, string repositorySlug,
             Repository repository)
         {
@@ -50,7 +48,6 @@ namespace Bitbucket.Cloud.Net
             return await HandleResponseAsync<Repository>(response).ConfigureAwait(false);
         }
 
-        //[Scope: repository:admin]
         public async Task<Repository> UpdateRepositoryAsync(string userName, string repositorySlug,
             Repository repository)
         {
@@ -61,7 +58,6 @@ namespace Bitbucket.Cloud.Net
             return await HandleResponseAsync<Repository>(response).ConfigureAwait(false);
         }
 
-        //[Scope: repository:delete]
         public async Task<bool> DeleteRepositoryAsync(string userName, string repositorySlug)
         {
             var response = await GetRepositoriesUrl($"/{userName}/{repositorySlug}")

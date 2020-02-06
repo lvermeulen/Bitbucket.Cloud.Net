@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Bitbucket.Cloud.Net.Common.Models
+﻿namespace Bitbucket.Cloud.Net.Common.Models
 {
     public class ErrorResponse
     {
-        public IEnumerable<Error> Errors { get; set; }
+	    public string Type { get; set; }
+	    public Error Error { get; set; }
     }
 }

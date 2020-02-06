@@ -2,8 +2,8 @@
 {
     public class Error
     {
-        public string Context { get; set; }
         public string Message { get; set; }
-        public object ExceptionName { get; set; }
+        public string Detail { get; set; }
+        public string Data { get; set; }
     }
 }

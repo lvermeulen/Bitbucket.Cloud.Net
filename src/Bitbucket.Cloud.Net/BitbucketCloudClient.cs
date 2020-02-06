@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common;
@@ -63,24 +62,25 @@ namespace Bitbucket.Cloud.Net
             if (!response.IsSuccessStatusCode)
             {
                 var errorResponse = await ReadResponseContentAsync<ErrorResponse>(response).ConfigureAwait(false);
-                string errorMessage = string.Join(Environment.NewLine, errorResponse.Errors.Select(x => x.Message));
+                
+                string errorMessage = string.Join(Environment.NewLine, errorResponse?.Error?.Message);
                 throw new InvalidOperationException($"Http request failed ({(int)response.StatusCode} - {response.StatusCode}):\n{errorMessage}");
             }
         }
 
-        internal async Task<TResult> HandleResponseAsync<TResult>(HttpResponseMessage responseMessage, Func<string, TResult> contentHandler = null)
+        private async Task<TResult> HandleResponseAsync<TResult>(HttpResponseMessage responseMessage, Func<string, TResult> contentHandler = null)
         {
             await HandleErrorsAsync(responseMessage).ConfigureAwait(false);
             return await ReadResponseContentAsync(responseMessage, contentHandler).ConfigureAwait(false);
         }
 
-        internal async Task<bool> HandleResponseAsync(HttpResponseMessage responseMessage)
+        private async Task<bool> HandleResponseAsync(HttpResponseMessage responseMessage)
         {
             await HandleErrorsAsync(responseMessage).ConfigureAwait(false);
             return await ReadResponseContentAsync(responseMessage).ConfigureAwait(false);
         }
 
-        internal async Task<IEnumerable<T>> GetPagedResultsAsync<T>(int? maxPages, IDictionary<string, object> queryParamValues, Func<IDictionary<string, object>, Task<Common.Models.v2.PagedResults<T>>> selector)
+        private async Task<IEnumerable<T>> GetPagedResultsAsync<T>(int? maxPages, IDictionary<string, object> queryParamValues, Func<IDictionary<string, object>, Task<PagedResults<T>>> selector)
         {
             var results = new List<T>();
             bool isLastPage = false;

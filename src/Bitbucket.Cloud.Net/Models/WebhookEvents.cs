@@ -1,0 +1,29 @@
+﻿namespace Bitbucket.Cloud.Net.Models
+{
+	public enum WebhookEvents
+	{
+		PullrequestUnapproved,
+		IssueCommentCreated,
+		PullrequestApproved,
+		RepoCreated,
+		RepoDeleted,
+		RepoImported,
+		PullrequestCommentUpdated,
+		IssueUpdated,
+		ProjectUpdated,
+		PullrequestCommentCreated,
+		RepoCommitStatusUpdated,
+		PullrequestUpdated,
+		IssueCreated,
+		RepoFork,
+		PullrequestCommentDeleted,
+		RepoCommitStatusCreated,
+		RepoUpdated,
+		PullrequestRejected,
+		PullrequestFulfilled,
+		RepoPush,
+		PullrequestCreated,
+		RepoTransfer,
+		RepoCommitCommentCreated
+	}
+}

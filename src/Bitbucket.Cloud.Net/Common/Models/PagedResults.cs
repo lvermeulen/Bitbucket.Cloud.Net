@@ -2,10 +2,13 @@
 
 namespace Bitbucket.Cloud.Net.Common.Models
 {
-    public class PagedResults<T> : PagedResultsBase
+    public class PagedResults<T>
     {
-        public int Limit { get; set; }
+        public int Size { get; set; }
+        public int Page { get; set; }
+        public int PageLen { get; set; }
+        public string Next { get; set; }
+        public string Previous { get; set; }
         public List<T> Values { get; set; }
-        public int? NextPageStart { get; set; }
     }
 }

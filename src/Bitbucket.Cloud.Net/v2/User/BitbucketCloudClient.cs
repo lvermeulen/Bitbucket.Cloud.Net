@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Bitbucket.Cloud.Net.Common.Models.v2;
-using Bitbucket.Cloud.Net.v2.User.Models;
+using Bitbucket.Cloud.Net.Common.Models;
+using Bitbucket.Cloud.Net.Models;
 using Flurl.Http;
 
+// ReSharper disable once CheckNamespace
 namespace Bitbucket.Cloud.Net
 {
     public partial class BitbucketCloudClient
     {
         private IFlurlRequest GetUserUrl() => GetBaseUrl("2.0/user");
 
-        //[Scope: account]
         public async Task<User> GetUserAsync()
         {
             return await GetUserUrl()

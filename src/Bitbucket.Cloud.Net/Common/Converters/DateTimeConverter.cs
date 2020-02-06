@@ -2,7 +2,7 @@
 
 namespace Bitbucket.Cloud.Net.Common.Converters
 {
-    public class DateTimeConverter
+    public static class DateTimeConverter
     {
         public static string ConvertToString(DateTime value)
         {

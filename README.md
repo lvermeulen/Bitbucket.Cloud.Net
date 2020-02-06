@@ -152,16 +152,17 @@ C# Client for Bitbucket Cloud
         * [X] Permissions
             * [X] Repositories
             * [X] Teams
-    * [ ] Users
-        * [ ] User Name
-            * [ ] Followers
-            * [ ] Following
-            * [ ] Hooks
-                * [ ] Uid
-            * [ ] Pipelines Config
-                * [ ] Variables
-                    * [ ] Variable Uuid
-            * [ ] Repositories
-            * [ ] Search
-                * [ ] Code
-            * [ ] Ssh Keys
+    * [X] Users
+        * [X] User Name
+            * ~~[X] Followers~~ (deprecated)
+            * ~~[X] Following~~ (deprecated)
+            * [X] Hooks
+                * [X] Uid
+            * ~~[X] Members~~ (deprecated)
+            * [X] Pipelines Config
+                * [X] Variables
+                    * [X] Variable Uuid
+            * [X] Repositories
+            * [X] Search
+                * [X] Code
+            * [X] Ssh Keys

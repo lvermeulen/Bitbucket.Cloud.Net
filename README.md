@@ -26,10 +26,11 @@ C# Client for Bitbucket Cloud
         * [ ] Subject Type
     * [ ] Pull Requests
     * [X] Repositories
-        * [ ] User Name
+        * [ ] Workspace
             * [X] Repo Slug
-                * [ ] Branch Restrictions
-                    * [ ] Id
+                * [X] Branch Restrictions
+                    * [X] Id
+                * [ ] Branching Model
                 * [ ] Commit
                     * [ ] Node
                         * [ ] Approve

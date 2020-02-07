@@ -16,17 +16,18 @@ namespace Bitbucket.Cloud.Net.Models
         public ForkPolicies ForkPolicy { get; set; }
         public string Language { get; set; }
         [JsonProperty("created_on")]
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
         public Branch MainBranch { get; set; }
         [JsonProperty("has_issues")]
         public bool HasIssues { get; set; }
         public Owner Owner { get; set; }
         [JsonProperty("updated_on")]
-        public DateTime UpdatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; }
         public int Size { get; set; }
         public string Slug { get; set; }
         [JsonProperty("is_private")]
         public bool IsPrivate { get; set; }
         public string Description { get; set; }
+        public string Key { get; set; }
     }
 }

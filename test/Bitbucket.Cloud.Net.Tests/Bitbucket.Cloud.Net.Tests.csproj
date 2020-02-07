@@ -48,7 +48,6 @@
     <Folder Include="v2\Repositories\Refs\" />
     <Folder Include="v2\Repositories\Src\" />
     <Folder Include="v2\Repositories\Versions\" />
-    <Folder Include="v2\Repositories\Watchers\" />
   </ItemGroup>
 
 </Project>

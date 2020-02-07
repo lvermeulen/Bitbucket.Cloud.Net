@@ -117,7 +117,7 @@ C# Client for Bitbucket Cloud
                         * [ ] Path
                 * [ ] Versions
                     * [ ] Version Id
-                * [ ] Watchers
+                * [X] Watchers
     * [ ] Snippets
         * [ ] User Name
             * [ ] Encoded Id

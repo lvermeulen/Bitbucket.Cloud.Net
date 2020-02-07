@@ -33,7 +33,6 @@
     <Folder Include="v2\Repositories\Forks\" />
     <Folder Include="v2\Repositories\Issues\" />
     <Folder Include="v2\Repositories\Milestones\" />
-    <Folder Include="v2\Repositories\Watchers\" />
     <Folder Include="v2\Repositories\Versions\" />
     <Folder Include="v2\Repositories\Src\" />
     <Folder Include="v2\Repositories\Refs\" />

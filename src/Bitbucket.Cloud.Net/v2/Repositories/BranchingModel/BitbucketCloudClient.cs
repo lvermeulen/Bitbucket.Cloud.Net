@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Bitbucket.Cloud.Net.Common.Models;
+﻿using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Models;
 using Flurl.Http;
 

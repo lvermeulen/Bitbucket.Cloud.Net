@@ -46,8 +46,8 @@ C# Client for Bitbucket Cloud
                     * [ ] Revision
                 * [ ] Components
                     * [ ] Component Id
-                * [ ] Default Reviewers
-                    * [ ] Target User Name
+                * [X] Default Reviewers
+                    * [X] Target User Name
                 * [ ] Diff
                     * [ ] Spec
                 * [ ] Diffstat

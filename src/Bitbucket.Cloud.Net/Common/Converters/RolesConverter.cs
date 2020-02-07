@@ -1,5 +1,4 @@
-﻿using System;
-using Bitbucket.Cloud.Net.Models;
+﻿using Bitbucket.Cloud.Net.Models;
 
 namespace Bitbucket.Cloud.Net.Common.Converters
 {

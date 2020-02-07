@@ -58,8 +58,8 @@ C# Client for Bitbucket Cloud
                     * [ ] Node
                         * [ ] Path
                 * [ ] Forks
-                * [ ] Hooks
-                    * [ ] Uid
+                * [X] Hooks
+                    * [X] Uid
                 * [ ] Issues
                     * [ ] Issue Id
                         * [ ] Attachments

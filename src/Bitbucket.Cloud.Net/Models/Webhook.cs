@@ -9,7 +9,7 @@ namespace Bitbucket.Cloud.Net.Models
 	public class Webhook
 	{
 		[JsonProperty("read_only")]
-		public bool ReadOnly { get; set; }
+		public bool? ReadOnly { get; set; }
 		public string Description { get; set; }
 		public Links Links { get; set; }
 		public string Url { get; set; }
@@ -26,6 +26,6 @@ namespace Bitbucket.Cloud.Net.Models
 		public string Type { get; set; }
 		[JsonConverter(typeof(WebhookEventsConverter))]
 		public IEnumerable<WebhookEvents> Events { get; set; }
-		public string Uuid { get; set; }
+		public Guid Uuid { get; set; }
 	}
 }

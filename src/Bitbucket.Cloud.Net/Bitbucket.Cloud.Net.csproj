@@ -32,7 +32,6 @@
     <Folder Include="v2\Repositories\FileHistory\" />
     <Folder Include="v2\Repositories\Forks\" />
     <Folder Include="v2\Repositories\Issues\" />
-    <Folder Include="v2\Repositories\Hooks\" />
     <Folder Include="v2\Repositories\Milestones\" />
     <Folder Include="v2\Repositories\Watchers\" />
     <Folder Include="v2\Repositories\Versions\" />

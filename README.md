@@ -30,7 +30,8 @@ C# Client for Bitbucket Cloud
             * [X] Repo Slug
                 * [X] Branch Restrictions
                     * [X] Id
-                * [ ] Branching Model
+                * [X] Branching Model
+                    * [X] Settings
                 * [ ] Commit
                     * [ ] Node
                         * [ ] Approve

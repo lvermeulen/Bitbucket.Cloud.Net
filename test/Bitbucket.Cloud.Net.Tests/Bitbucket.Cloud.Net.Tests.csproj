@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="v1\" />
-    <Folder Include="v2\Repositories\BranchingModel\" />
     <Folder Include="v2\Repositories\Commits\" />
     <Folder Include="v2\Repositories\Commit\" />
     <Folder Include="v2\Repositories\Components\" />

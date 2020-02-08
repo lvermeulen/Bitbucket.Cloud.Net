@@ -22,7 +22,6 @@ namespace Bitbucket.Cloud.Net
 		public async Task<Webhook> CreateUserWebhookAsync(string userName, Webhook webhook)
 		{
 			var response = await GetUsersUrl()
-				.AllowHttpStatus("400-600")
 				.AppendPathSegment($"/{userName}/hooks")
 				.PostJsonAsync(webhook)
 				.ConfigureAwait(false);

@@ -61,8 +61,8 @@ C# Client for Bitbucket Cloud
                     * [ ] Spec
                 * [ ] Diffstat
                     * [ ] Spec
-                * [ ] Downloads
-                    * [ ] Filename
+                * [X] Downloads
+                    * [X] Filename
                 * [ ] File History
                     * [ ] Node
                         * [ ] Path

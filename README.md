@@ -100,9 +100,9 @@ C# Client for Bitbucket Cloud
                             * [ ] Known Host Uuid
                     * [ ] Variables
                         * [ ] Variable Uuid
-                * [ ] Properties
-                    * [ ] App Key
-                        * [ ] Property Name
+                * [X] Properties
+                    * [X] App Key
+                        * [X] Property Name
                 * [ ] Pull Requests
                     * [ ] Activity
                     * [ ] Pull Request Id

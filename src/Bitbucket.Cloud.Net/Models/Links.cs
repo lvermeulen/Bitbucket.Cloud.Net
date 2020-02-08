@@ -18,5 +18,10 @@ namespace Bitbucket.Cloud.Net.Models
         public Link Downloads { get; set; }
         public Link Issues { get; set; }
         public Link PullRequests { get; set; }
+        public Link Comments { get; set; }
+        public Link Patch { get; set; }
+        public Link Diff { get; set; }
+        public Link Approve { get; set; }
+        public Link Statuses { get; set; }
     }
 }

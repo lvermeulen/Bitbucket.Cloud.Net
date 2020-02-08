@@ -116,11 +116,11 @@ C# Client for Bitbucket Cloud
                         * [ ] Merge
                         * [ ] Patch
                         * [ ] Statuses
-                * [ ] Refs
-                    * [ ] Branches
-                        * [ ] Name
-                    * [ ] Tags
-                        * [ ] Name
+                * [X] Refs
+                    * [X] Branches
+                        * [X] Name
+                    * [X] Tags
+                        * [X] Name
                 * [ ] Src
                     * [ ] Node
                         * [ ] Path

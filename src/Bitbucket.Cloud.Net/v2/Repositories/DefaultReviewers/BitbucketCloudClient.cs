@@ -15,7 +15,7 @@ namespace Bitbucket.Cloud.Net
 		private IFlurlRequest GetDefaultReviewersUrl(string workspaceId, string repositorySlug, string path) => GetDefaultReviewersUrl(workspaceId, repositorySlug)
 			.AppendPathSegment(path);
 
-		public async Task<IEnumerable<User>> GetDefaultReviewersAsync(string workspaceId, string repositorySlug, int? maxPages = null)
+		public async Task<IEnumerable<User>> GetRepositoryDefaultReviewersAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
 			var queryParamValues = new Dictionary<string, object>();
 
@@ -27,7 +27,7 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<bool> AddDefaultReviewerAsync(string workspaceId, string repositorySlug, string targetUserName)
+		public async Task<bool> AddRepositoryDefaultReviewerAsync(string workspaceId, string repositorySlug, string targetUserName)
 		{
 			var response = await GetDefaultReviewersUrl(workspaceId, repositorySlug, targetUserName)
 				.PutJsonAsync(new StringContent(""))
@@ -36,14 +36,14 @@ namespace Bitbucket.Cloud.Net
 			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
 
-		public async Task<User> GetDefaultReviewerAsync(string workspaceId, string repositorySlug, string targetUserName)
+		public async Task<User> GetRepositoryDefaultReviewerAsync(string workspaceId, string repositorySlug, string targetUserName)
 		{
 			return await GetDefaultReviewersUrl(workspaceId, repositorySlug, targetUserName)
 				.GetJsonAsync<User>()
 				.ConfigureAwait(false);
 		}
 
-		public async Task<bool> DeleteDefaultReviewerAsync(string workspaceId, string repositorySlug, string targetUserName)
+		public async Task<bool> DeleteRepositoryDefaultReviewerAsync(string workspaceId, string repositorySlug, string targetUserName)
 		{
 			var response = await GetDefaultReviewersUrl(workspaceId, repositorySlug, targetUserName)
 				.DeleteAsync()

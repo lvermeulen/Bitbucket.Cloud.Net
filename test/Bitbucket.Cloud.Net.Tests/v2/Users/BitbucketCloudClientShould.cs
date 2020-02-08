@@ -36,9 +36,14 @@ namespace Bitbucket.Cloud.Net.Tests
 		[InlineData("luve")]
 		public async Task GetUserVariableAsync(string userName)
 		{
-			var variables = await _client.GetUserVariablesAsync(userName);
-			var variable = variables.FirstOrDefault();
-			var result = await _client.GetUserVariableAsync(userName, variable?.Uuid.ToString("B"));
+			var results = await _client.GetUserVariablesAsync(userName);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetUserVariableAsync(userName, firstResult.Uuid.ToString("B"));
 			Assert.NotNull(result);
 		}
 

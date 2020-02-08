@@ -7,7 +7,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 {
     public class WebhookEventsConverter : JsonEnumConverter<WebhookEvents>
     {
-        private static readonly Dictionary<WebhookEvents, string> s_stringByWebhookEvents = new Dictionary<WebhookEvents, string>
+        private static readonly Dictionary<WebhookEvents, string> s_map = new Dictionary<WebhookEvents, string>
         {
             [WebhookEvents.PullrequestUnapproved] = "pullrequest:unapproved",
             [WebhookEvents.IssueCommentCreated] = "issue:comment_created",
@@ -36,7 +36,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
         protected override string ConvertToString(WebhookEvents value)
         {
-            if (!s_stringByWebhookEvents.TryGetValue(value, out string result))
+            if (!s_map.TryGetValue(value, out string result))
             {
                 throw new ArgumentException($"Unknown webhook event: {value}");
             }
@@ -46,7 +46,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
         protected override WebhookEvents ConvertFromString(string s)
         {
-            var pair = s_stringByWebhookEvents.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
+            var pair = s_map.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
             // ReSharper disable once SuspiciousTypeConversion.Global
             if (EqualityComparer<KeyValuePair<WebhookEvents, string>>.Default.Equals(pair))
             {

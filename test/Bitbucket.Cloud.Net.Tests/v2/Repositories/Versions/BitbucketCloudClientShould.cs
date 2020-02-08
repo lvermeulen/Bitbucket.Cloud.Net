@@ -19,9 +19,14 @@ namespace Bitbucket.Cloud.Net.Tests
 		[InlineData("luve", "test")]
 		public async Task GetRepositoryVersionAsync(string workspaceId, string repositorySlug)
 		{
-			var versions = await _client.GetRepositoryVersionsAsync(workspaceId, repositorySlug);
-			var version = versions.FirstOrDefault();
-			var result = await _client.GetRepositoryVersionAsync(workspaceId, repositorySlug, version?.Id ?? -1).ConfigureAwait(false);
+			var results = await _client.GetRepositoryVersionsAsync(workspaceId, repositorySlug);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetRepositoryVersionAsync(workspaceId, repositorySlug, firstResult.Id).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

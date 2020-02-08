@@ -7,7 +7,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 {
     public class ScmConverter : JsonEnumConverter<Scm>
     {
-        private static readonly Dictionary<Scm, string> s_stringByScm = new Dictionary<Scm, string>
+        private static readonly Dictionary<Scm, string> s_map = new Dictionary<Scm, string>
         {
             [Scm.Hg] = "hg",
             [Scm.Git] = "git"
@@ -15,7 +15,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
         protected override string ConvertToString(Scm value)
         {
-            if (!s_stringByScm.TryGetValue(value, out string result))
+            if (!s_map.TryGetValue(value, out string result))
             {
                 throw new ArgumentException($"Unknown scm: {value}");
             }
@@ -25,7 +25,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
         protected override Scm ConvertFromString(string s)
         {
-            var pair = s_stringByScm.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
+            var pair = s_map.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
             // ReSharper disable once SuspiciousTypeConversion.Global
             if (EqualityComparer<KeyValuePair<Scm, string>>.Default.Equals(pair))
             {

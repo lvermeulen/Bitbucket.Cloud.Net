@@ -29,7 +29,6 @@
     <Folder Include="v2\Repositories\Commits\" />
     <Folder Include="v2\Repositories\Commit\" />
     <Folder Include="v2\Repositories\Components\" />
-    <Folder Include="v2\Repositories\DeployKeys\" />
     <Folder Include="v2\Repositories\DeploymentsConfig\" />
     <Folder Include="v2\Repositories\Deployments\" />
     <Folder Include="v2\Repositories\DiffStat\" />

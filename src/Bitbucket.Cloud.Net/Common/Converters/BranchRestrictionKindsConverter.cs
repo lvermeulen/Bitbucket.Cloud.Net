@@ -7,7 +7,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 {
 	public class BranchRestrictionKindsConverter : JsonEnumConverter<BranchRestrictionKinds>
 	{
-		private static readonly Dictionary<BranchRestrictionKinds, string> s_stringByBranchRestrictionKind = new Dictionary<BranchRestrictionKinds, string>
+		private static readonly Dictionary<BranchRestrictionKinds, string> s_map = new Dictionary<BranchRestrictionKinds, string>
 		{
 			[BranchRestrictionKinds.RequireTasksToBeCompleted] = "require_tasks_to_be_completed",
 			[BranchRestrictionKinds.Force] = "force",
@@ -24,7 +24,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
 		protected override string ConvertToString(BranchRestrictionKinds value)
 		{
-			if (!s_stringByBranchRestrictionKind.TryGetValue(value, out string result))
+			if (!s_map.TryGetValue(value, out string result))
 			{
 				throw new ArgumentException($"Unknown branch restriction kind: {value}");
 			}
@@ -34,7 +34,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
 		protected override BranchRestrictionKinds ConvertFromString(string s)
 		{
-			var pair = s_stringByBranchRestrictionKind.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
+			var pair = s_map.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
 			// ReSharper disable once SuspiciousTypeConversion.Global
 			if (EqualityComparer<KeyValuePair<BranchRestrictionKinds, string>>.Default.Equals(pair))
 			{

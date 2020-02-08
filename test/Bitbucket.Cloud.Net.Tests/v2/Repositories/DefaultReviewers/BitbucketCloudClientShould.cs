@@ -8,17 +8,17 @@ namespace Bitbucket.Cloud.Net.Tests
 	{
 		[Theory]
 		[InlineData("luve", "test")]
-		public async Task GetDefaultReviewersAsync(string workspaceId, string repositorySlug)
+		public async Task GetRepositoryDefaultReviewersAsync(string workspaceId, string repositorySlug)
 		{
-			var result = await _client.GetDefaultReviewersAsync(workspaceId, repositorySlug).ConfigureAwait(false);
+			var result = await _client.GetRepositoryDefaultReviewersAsync(workspaceId, repositorySlug).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 
 		[Theory]
 		[InlineData("luve", "test", "luve")]
-		public async Task GetDefaultReviewerAsync(string workspaceId, string repositorySlug, string targetUserName)
+		public async Task GetRepositoryDefaultReviewerAsync(string workspaceId, string repositorySlug, string targetUserName)
 		{
-			var result = await _client.GetDefaultReviewerAsync(workspaceId, repositorySlug, targetUserName).ConfigureAwait(false);
+			var result = await _client.GetRepositoryDefaultReviewerAsync(workspaceId, repositorySlug, targetUserName).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

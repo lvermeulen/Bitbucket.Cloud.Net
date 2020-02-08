@@ -19,9 +19,14 @@ namespace Bitbucket.Cloud.Net.Tests
 		[InlineData("luve", "test")]
 		public async Task GetRepositoryBranchRestrictionAsync(string workspaceId, string repositorySlug)
 		{
-			var branchRestrictions = await _client.GetRepositoryBranchRestrictionsAsync(workspaceId, repositorySlug).ConfigureAwait(false);
-			var branchRestriction = branchRestrictions.FirstOrDefault();
-			var result = await _client.GetRepositoryBranchRestrictionAsync(workspaceId, repositorySlug, branchRestriction?.Id.ToString());
+			var results = await _client.GetRepositoryBranchRestrictionsAsync(workspaceId, repositorySlug).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetRepositoryBranchRestrictionAsync(workspaceId, repositorySlug, firstResult.Id.ToString());
 			Assert.NotNull(result);
 		}
 	}

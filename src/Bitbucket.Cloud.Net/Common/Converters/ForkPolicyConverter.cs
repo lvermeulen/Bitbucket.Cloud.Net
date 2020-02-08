@@ -7,7 +7,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 {
     public class ForkPolicyConverter : JsonEnumConverter<ForkPolicies>
     {
-        private static readonly Dictionary<ForkPolicies, string> s_stringByForkPolicy = new Dictionary<ForkPolicies, string>
+        private static readonly Dictionary<ForkPolicies, string> s_map = new Dictionary<ForkPolicies, string>
         {
             [ForkPolicies.AllowForks] = "allow_forks",
             [ForkPolicies.NoPublicForks] = "no_public_forks",
@@ -16,7 +16,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
         protected override string ConvertToString(ForkPolicies value)
         {
-            if (!s_stringByForkPolicy.TryGetValue(value, out string result))
+            if (!s_map.TryGetValue(value, out string result))
             {
                 throw new ArgumentException($"Unknown fork policy: {value}");
             }
@@ -26,7 +26,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 
         protected override ForkPolicies ConvertFromString(string s)
         {
-            var pair = s_stringByForkPolicy.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
+            var pair = s_map.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
             // ReSharper disable once SuspiciousTypeConversion.Global
             if (EqualityComparer<KeyValuePair<ForkPolicies, string>>.Default.Equals(pair))
             {

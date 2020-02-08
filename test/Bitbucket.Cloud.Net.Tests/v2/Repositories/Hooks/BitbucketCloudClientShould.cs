@@ -19,9 +19,14 @@ namespace Bitbucket.Cloud.Net.Tests
 		[InlineData("luve", "test")]
 		public async Task GetRepositoryWebhookAsync(string workspaceId, string repositorySlug)
 		{
-			var hooks = await _client.GetRepositoryWebhooksAsync(workspaceId, repositorySlug).ConfigureAwait(false);
-			var hook = hooks.FirstOrDefault();
-			var result = await _client.GetRepositoryWebhookAsync(workspaceId, repositorySlug, hook?.Uuid.ToString("B")).ConfigureAwait(false);
+			var results = await _client.GetRepositoryWebhooksAsync(workspaceId, repositorySlug).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetRepositoryWebhookAsync(workspaceId, repositorySlug, firstResult.Uuid.ToString("B")).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

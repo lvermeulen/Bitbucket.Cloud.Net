@@ -42,8 +42,8 @@ C# Client for Bitbucket Cloud
                     * [ ] Sha
                         * [ ] Comments
                             * [ ] Comment Id
-                * [ ] Commits
-                    * [ ] Revision
+                * [X] Commits
+                    * [X] Revision
                 * [ ] Components
                     * [ ] Component Id
                 * [X] Default Reviewers

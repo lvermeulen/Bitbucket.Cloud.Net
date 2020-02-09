@@ -34,7 +34,7 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<bool> CreateRepositoryBranchAsync(string workspaceId, string repositorySlug, string branchName, string targetHash)
+		public async Task<Ref> CreateRepositoryBranchAsync(string workspaceId, string repositorySlug, string branchName, string targetHash)
 		{
 			var data = new
 			{
@@ -49,7 +49,7 @@ namespace Bitbucket.Cloud.Net
 				.PostJsonAsync(data)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync(response).ConfigureAwait(false);
+			return await HandleResponseAsync<Ref>(response).ConfigureAwait(false);
 		}
 
 		public async Task<IEnumerable<Ref>> GetRepositoryBranchesAsync(string workspaceId, string repositorySlug, int? maxPages = null, string q = null, string sort = null)
@@ -68,7 +68,7 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<bool> CreateRepositoryTagAsync(string workspaceId, string repositorySlug, string branchName, string targetHash)
+		public async Task<Ref> CreateRepositoryTagAsync(string workspaceId, string repositorySlug, string branchName, string targetHash)
 		{
 			var data = new
 			{
@@ -83,7 +83,7 @@ namespace Bitbucket.Cloud.Net
 				.PostJsonAsync(data)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync(response).ConfigureAwait(false);
+			return await HandleResponseAsync<Ref>(response).ConfigureAwait(false);
 		}
 
 		public async Task<IEnumerable<Ref>> GetRepositoryTagsAsync(string workspaceId, string repositorySlug, int? maxPages = null, string q = null, string sort = null)

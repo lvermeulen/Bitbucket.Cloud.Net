@@ -44,8 +44,8 @@ C# Client for Bitbucket Cloud
                             * [ ] Comment Id
                 * [X] Commits
                     * [X] Revision
-                * [ ] Components
-                    * [ ] Component Id
+                * [X] Components
+                    * [X] Component Id
                 * [X] Default Reviewers
                     * [X] Target User Name
                 * [X] Deploy Keys

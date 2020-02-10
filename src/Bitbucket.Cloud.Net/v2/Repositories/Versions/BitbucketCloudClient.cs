@@ -23,7 +23,7 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<Version> GetRepositoryVersionAsync(string workspaceId, string repositorySlug, int versionId)
+		public async Task<Version> GetRepositoryVersionAsync(string workspaceId, string repositorySlug, string versionId)
 		{
 			return await GetVersionsUrl(workspaceId, repositorySlug)
 				.AppendPathSegment($"{versionId}")

@@ -20,7 +20,7 @@ namespace Bitbucket.Cloud.Net
 				.PostJsonAsync(webhook)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<Webhook>(response);
+			return await HandleResponseAsync<Webhook>(response).ConfigureAwait(false);
 		}
 
 		public async Task<IEnumerable<Webhook>> GetRepositoryWebhooksAsync(string workspaceId, string repositorySlug, int? maxPages = null)
@@ -41,7 +41,7 @@ namespace Bitbucket.Cloud.Net
 				.PutJsonAsync(webhook)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<Webhook>(response);
+			return await HandleResponseAsync<Webhook>(response).ConfigureAwait(false);
 		}
 
 		public async Task<Webhook> GetRepositoryWebhookAsync(string workspaceId, string repositorySlug, string webhookId)
@@ -57,7 +57,7 @@ namespace Bitbucket.Cloud.Net
 				.DeleteAsync()
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<bool>(response);
+			return await HandleResponseAsync<bool>(response).ConfigureAwait(false);
 		}
 	}
 }

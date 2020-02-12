@@ -69,7 +69,7 @@ C# Client for Bitbucket Cloud
                 * [ ] File History
                     * [ ] Node
                         * [ ] Path
-                * [ ] Forks
+                * [X] Forks
                 * [X] Hooks
                     * [X] Uid
                 * [ ] Issues

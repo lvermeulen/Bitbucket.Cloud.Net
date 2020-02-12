@@ -57,8 +57,8 @@ C# Client for Bitbucket Cloud
                         * [ ] Environment Uuid
                             * [ ] Variables
                                 * [ ] Variable Uuid
-                * [ ] Diff
-                    * [ ] Spec
+                * [X] Diff
+                    * [X] Spec
                 * [ ] Diffstat
                     * [ ] Spec
                 * [X] Downloads

@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Bitbucket.Cloud.Net.Models
 {
-	public class SshKey
+	public class SshKey : HasUuid
 	{
 		public string Comment { get; set; }
 		[JsonProperty("created_on")]
@@ -18,6 +18,5 @@ namespace Bitbucket.Cloud.Net.Models
 		public Links Links { get; set; }
 		public User Owner { get; set; }
 		public string Type { get; set; }
-		public string Uuid { get; set; }
 	}
 }

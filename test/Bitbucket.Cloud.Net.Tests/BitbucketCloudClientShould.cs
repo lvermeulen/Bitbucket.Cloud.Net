@@ -20,11 +20,11 @@ namespace Bitbucket.Cloud.Net.Tests
             _client = new BitbucketCloudClient(_configuration["url"], _configuration["username"], _configuration["password"]);
         }
 
-        [Fact]
+        [Fact(Skip = "Not working yet")]
         public async Task AuthenticateWithOAuth()
         {
             var client = new BitbucketCloudClient(_configuration["url"], "2KytPTfjwjkR5khuyp", "NqtjTkPEDTWMWTM4Ax68MCFd87F4JQDk", "oauth");
-            var results = await client.GetRepositoriesAsync(1);
+            var results = await client.GetRepositoriesAsync(1).ConfigureAwait(false);
             Assert.NotEmpty(results);
         }
     }

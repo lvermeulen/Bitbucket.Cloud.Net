@@ -30,7 +30,6 @@
     <Folder Include="v2\Repositories\Issues\" />
     <Folder Include="v2\Repositories\Milestones\" />
     <Folder Include="v2\Repositories\Src\" />
-    <Folder Include="v2\Repositories\Pullrequests\" />
     <Folder Include="v2\Repositories\PipelinesConfig\" />
     <Folder Include="v2\Repositories\Pipelines\" />
     <Folder Include="v2\Repositories\Patch\" />

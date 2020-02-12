@@ -18,7 +18,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 			[BranchRestrictionKinds.RequireAllDependenciesMerged] = "require_all_dependencies_merged",
 			[BranchRestrictionKinds.Push] = "push",
 			[BranchRestrictionKinds.RequirePassingBuildsToMerge] = "require_passing_builds_to_merge",
-			[BranchRestrictionKinds.ResetPullrequestApprovalsOnChange] = "reset_pullrequest_approvals_on_change",
+			[BranchRestrictionKinds.ResetPullRequestApprovalsOnChange] = "reset_pullrequest_approvals_on_change",
 			[BranchRestrictionKinds.RequireDefaultReviewerApprovalsToMerge] = "require_default_reviewer_approvals_to_merge"
 		};
 

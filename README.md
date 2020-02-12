@@ -63,6 +63,9 @@ C# Client for Bitbucket Cloud
                     * [ ] Spec
                 * [X] Downloads
                     * [X] Filename
+                * [ ] Environments
+                    * [ ] Environment Uuid
+                        * [ ] Changes
                 * [ ] File History
                     * [ ] Node
                         * [ ] Path
@@ -103,19 +106,22 @@ C# Client for Bitbucket Cloud
                 * [X] Properties
                     * [X] App Key
                         * [X] Property Name
-                * [ ] Pull Requests
-                    * [ ] Activity
-                    * [ ] Pull Request Id
-                        * [ ] Activity
-                        * [ ] Approve
-                        * [ ] Comments
-                        * [ ] Commits
-                        * [ ] Decline
-                        * [ ] Diff
-                        * [ ] Diffstat
-                        * [ ] Merge
-                        * [ ] Patch
-                        * [ ] Statuses
+                * [X] Pull Requests
+                    * [X] Activity
+                    * [X] Pull Request Id
+                        * [X] Activity
+                        * [X] Approve
+                        * [X] Comments
+                        * [X] Commits
+                        * [X] Decline
+                        * [X] Diff
+                        * [X] Diffstat
+                        * [X] Merge
+                        * [X] Patch
+                        * [X] Statuses
+                        * [X] Properties
+                            * [X] App Key
+                                * [X] Property Name
                 * [X] Refs
                     * [X] Branches
                         * [X] Name

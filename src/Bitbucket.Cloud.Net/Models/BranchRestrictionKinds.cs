@@ -11,7 +11,7 @@
 		RequireAllDependenciesMerged,
 		Push,
 		RequirePassingBuildsToMerge,
-		ResetPullrequestApprovalsOnChange,
+		ResetPullRequestApprovalsOnChange,
 		RequireDefaultReviewerApprovalsToMerge
 	}
 }

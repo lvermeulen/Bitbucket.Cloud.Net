@@ -22,7 +22,6 @@
     <Folder Include="v2\Repositories\Commit\" />
     <Folder Include="v2\Repositories\Deployments\" />
     <Folder Include="v2\Repositories\DeploymentsConfig\" />
-    <Folder Include="v2\Repositories\DiffStat\" />
     <Folder Include="v2\Repositories\Environments\" />
     <Folder Include="v2\Repositories\FileHistory\" />
     <Folder Include="v2\Repositories\Forks\" />

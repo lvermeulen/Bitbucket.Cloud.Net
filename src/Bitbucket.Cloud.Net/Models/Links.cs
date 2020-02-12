@@ -28,5 +28,7 @@ namespace Bitbucket.Cloud.Net.Models
         public Link Merge { get; set; }
         public Link Activity { get; set; }
         public Link Code { get; set; }
+        public Link Meta { get; set; }
+        public Link History { get; set; }
     }
 }

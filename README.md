@@ -84,8 +84,8 @@ C# Client for Bitbucket Cloud
                         * [ ] Watch
                 * [ ] Milestones
                     * [ ] Milestone Id
-                * [ ] Patch
-                    * [ ] Spec
+                * [X] Patch
+                    * [X] Spec
                 * [ ] Pipelines
                     * [ ] Pipeline Uuid
                         * [ ] Steps
@@ -127,9 +127,9 @@ C# Client for Bitbucket Cloud
                         * [X] Name
                     * [X] Tags
                         * [X] Name
-                * [ ] Src
-                    * [ ] Node
-                        * [ ] Path
+                * [X] Src
+                    * [X] Node
+                        * [X] Path
                 * [X] Versions
                     * [X] Version Id
                 * [X] Watchers

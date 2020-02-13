@@ -73,13 +73,13 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<PullRequestParticipant> ApprovePullRequestAsync(string workspaceId, string repositorySlug, string pullRequestId)
+		public async Task<Participant> ApprovePullRequestAsync(string workspaceId, string repositorySlug, string pullRequestId)
 		{
 			var response = await GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/approve")
 				.PostAsync(new StringContent(""))
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<PullRequestParticipant>(response).ConfigureAwait(false);
+			return await HandleResponseAsync<Participant>(response).ConfigureAwait(false);
 		}
 
 		public async Task<bool> DeleteRepositoryPullRequestApprovalAsync(string workspaceId, string repositorySlug, string pullRequestId)

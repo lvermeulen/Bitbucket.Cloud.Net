@@ -32,16 +32,18 @@ C# Client for Bitbucket Cloud
                     * [X] Id
                 * [X] Branching Model
                     * [X] Settings
-                * [ ] Commit
-                    * [ ] Node
-                        * [ ] Approve
-                        * [ ] Statuses
-                            * [ ] Build
-                                * [ ] Key
-                    * [ ] Revision
-                    * [ ] Sha
-                        * [ ] Comments
-                            * [ ] Comment Id
+                * [X] Commit
+                    * [X] Commit
+                        * [X] Properties
+                            * [X] App Key
+                                * [X] Property Name
+                    * [X] Node
+                        * [X] Approve
+                        * [X] Comments
+                            * [X] Comment Id
+                        * [X] Statuses
+                            * [X] Build
+                                * [X] Key
                 * [X] Commits
                     * [X] Revision
                 * [X] Components

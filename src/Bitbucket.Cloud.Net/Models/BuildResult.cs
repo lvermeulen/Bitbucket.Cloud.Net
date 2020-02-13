@@ -1,4 +1,5 @@
 ﻿using System;
+using Bitbucket.Cloud.Net.Common.Converters;
 using Newtonsoft.Json;
 
 namespace Bitbucket.Cloud.Net.Models
@@ -11,7 +12,8 @@ namespace Bitbucket.Cloud.Net.Models
 		public string Url { get; set; }
 		public Links Links { get; set; }
 		public string RefName { get; set; }
-		public string State { get; set; }
+		[JsonConverter(typeof(BuildResultStatesConverter))]
+		public BuildResultStates State { get; set; }
 		[JsonProperty("created_on")]
 		public DateTime? CreatedOn { get; set; }
 		public CommitInfo Commit { get; set; }

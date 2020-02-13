@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 
 namespace Bitbucket.Cloud.Net.Models
 {
-	public class PullRequestParticipant : User
+	public class Participant : User
 	{
-		[JsonConverter(typeof(PullRequestParticipantRoleConverter))]
-		public PullRequestParticipantRole Role { get; set; }
+		[JsonConverter(typeof(ParticipantRoleConverter))]
+		public ParticipantRole Role { get; set; }
 		public bool Approved { get; set; }
 		[JsonProperty("participated_on")]
 		public DateTime? ParticipatedOn { get; set; }

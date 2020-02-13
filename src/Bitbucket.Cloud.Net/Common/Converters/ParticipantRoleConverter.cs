@@ -5,15 +5,15 @@ using Bitbucket.Cloud.Net.Models;
 
 namespace Bitbucket.Cloud.Net.Common.Converters
 {
-	public class PullRequestParticipantRoleConverter : JsonEnumConverter<PullRequestParticipantRole>
+	public class ParticipantRoleConverter : JsonEnumConverter<ParticipantRole>
 	{
-		private static readonly Dictionary<PullRequestParticipantRole, string> s_map = new Dictionary<PullRequestParticipantRole, string>
+		private static readonly Dictionary<ParticipantRole, string> s_map = new Dictionary<ParticipantRole, string>
 		{
-			[PullRequestParticipantRole.Participant] = "PARTICIPANT",
-			[PullRequestParticipantRole.Reviewer] = "REVIEWER"
+			[ParticipantRole.Participant] = "PARTICIPANT",
+			[ParticipantRole.Reviewer] = "REVIEWER"
 		};
 
-		protected override string ConvertToString(PullRequestParticipantRole value)
+		protected override string ConvertToString(ParticipantRole value)
 		{
 			if (!s_map.TryGetValue(value, out string result))
 			{
@@ -23,11 +23,11 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 			return result;
 		}
 
-		protected override PullRequestParticipantRole ConvertFromString(string s)
+		protected override ParticipantRole ConvertFromString(string s)
 		{
 			var pair = s_map.FirstOrDefault(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase));
 			// ReSharper disable once SuspiciousTypeConversion.Global
-			if (EqualityComparer<KeyValuePair<PullRequestParticipantRole, string>>.Default.Equals(pair))
+			if (EqualityComparer<KeyValuePair<ParticipantRole, string>>.Default.Equals(pair))
 			{
 				throw new ArgumentException($"Unknown participant role: {s}");
 			}

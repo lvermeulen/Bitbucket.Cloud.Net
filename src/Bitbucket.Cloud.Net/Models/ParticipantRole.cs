@@ -1,6 +1,6 @@
 ﻿namespace Bitbucket.Cloud.Net.Models
 {
-	public enum PullRequestParticipantRole
+	public enum ParticipantRole
 	{
 		Participant,
 		Reviewer

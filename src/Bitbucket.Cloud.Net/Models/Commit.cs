@@ -10,6 +10,7 @@ namespace Bitbucket.Cloud.Net.Models
 		public Author Author { get; set; }
 		public Message Summary { get; set; }
 		public IEnumerable<RefParent> Parents { get; set; }
+		public IEnumerable<Participant> Participants { get; set; }
 		public DateTime Date { get; set; }
 		public string Message { get; set; }
 	}

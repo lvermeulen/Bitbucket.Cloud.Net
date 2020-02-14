@@ -99,17 +99,17 @@ C# Client for Bitbucket Cloud
                                         * [X] Test Case Uuid
                                             * [X] Test Case Reasons
                         * [X] Stop Pipeline
-                * [ ] Pipelines Config
-                    * [ ] Build Number
-                    * [ ] Schedules
-                        * [ ] Schedule Uuid
-                            * [ ] Executions
+                * [X] Pipelines Config
+                    * [X] Build Number
+                    * [X] Schedules
+                        * [X] Schedule Uuid
+                            * [X] Executions
                     * [ ] Ssh
-                        * [ ] Key Pair
-                        * [ ] Known Hosts
-                            * [ ] Known Host Uuid
-                    * [ ] Variables
-                        * [ ] Variable Uuid
+                        * [X] Key Pair
+                        * [X] Known Hosts
+                            * [X] Known Host Uuid
+                    * [X] Variables
+                        * [X] Variable Uuid
                 * [X] Properties
                     * [X] App Key
                         * [X] Property Name

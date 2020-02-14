@@ -4,6 +4,6 @@
 	{
 		public CommitInfo Commit { get; set; }
 		public RepositoryInfo Repository { get; set; }
-		public BranchName Branch { get; set; }
+		public HasName Branch { get; set; }
 	}
 }

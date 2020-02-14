@@ -88,12 +88,17 @@ C# Client for Bitbucket Cloud
                     * [ ] Milestone Id
                 * [X] Patch
                     * [X] Spec
-                * [ ] Pipelines
-                    * [ ] Pipeline Uuid
-                        * [ ] Steps
-                            * [ ] Step Uuid
-                                * [ ] Log
-                        * [ ] Stop Pipeline
+                * [X] Pipelines
+                    * [X] Pipeline Uuid
+                        * [X] Steps
+                            * [X] Step Uuid
+                                * [X] Log
+                                    * [X] Log Uuid
+                                * [X] Test Reports
+                                    * [X] Test Cases
+                                        * [X] Test Case Uuid
+                                            * [X] Test Case Reasons
+                        * [X] Stop Pipeline
                 * [ ] Pipelines Config
                     * [ ] Build Number
                     * [ ] Schedules

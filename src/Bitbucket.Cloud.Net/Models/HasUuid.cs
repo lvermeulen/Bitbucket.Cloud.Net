@@ -1,7 +1,9 @@
-﻿namespace Bitbucket.Cloud.Net.Models
+﻿using System;
+
+namespace Bitbucket.Cloud.Net.Models
 {
 	public class HasUuid
 	{
-		public string Uuid { get; set; }
+		public Guid Uuid { get; set; }
 	}
 }

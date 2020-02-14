@@ -30,6 +30,6 @@ namespace Bitbucket.Cloud.Net.Models
         public Link Code { get; set; }
         public Link Meta { get; set; }
         public Link History { get; set; }
-
+        public Link Steps { get; set; }
     }
 }

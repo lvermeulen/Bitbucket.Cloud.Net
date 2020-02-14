@@ -11,7 +11,7 @@ namespace Bitbucket.Cloud.Net.Models
 		public object Website { get; set; }
 		[JsonProperty("has_wiki")]
 		public bool HasWiki { get; set; }
-		public string Uuid { get; set; }
+		public Guid Uuid { get; set; }
 		public Links Links { get; set; }
 		[JsonProperty("fork_policy")]
 		[JsonConverter(typeof(ForkPolicyConverter))]
@@ -21,7 +21,7 @@ namespace Bitbucket.Cloud.Net.Models
 		[JsonProperty("created_on")]
 		public DateTime? CreatedOn { get; set; }
 		public RepositoryInfo Parent { get; set; }
-		public TypedBranchName MainBranch { get; set; }
+		public TypedName MainBranch { get; set; }
 		[JsonProperty("full_name")]
 		public string FullName { get; set; }
 		[JsonProperty("has_issues")]

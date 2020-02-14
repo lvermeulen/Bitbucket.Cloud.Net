@@ -2,7 +2,7 @@
 
 namespace Bitbucket.Cloud.Net.Models
 {
-	public class BranchInfo : BranchName
+	public class BranchInfo : HasName
 	{
 		public Branch Branch { get; set; }
 		[JsonProperty("use_mainbranch")]

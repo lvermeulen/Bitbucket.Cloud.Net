@@ -25,7 +25,6 @@
     <Folder Include="v2\Repositories\Issues\" />
     <Folder Include="v2\Repositories\Milestones\" />
     <Folder Include="v2\Repositories\PipelinesConfig\" />
-    <Folder Include="v2\Repositories\Pipelines\" />
   </ItemGroup>
 
 </Project>

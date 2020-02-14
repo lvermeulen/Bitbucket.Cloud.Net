@@ -26,7 +26,7 @@ namespace Bitbucket.Cloud.Net.Tests
 				return;
 			}
 
-			var result = await _client.GetRepositoryWebhookAsync(workspaceId, repositorySlug, firstResult.Uuid.ToString("B")).ConfigureAwait(false);
+			var result = await _client.GetRepositoryWebhookAsync(workspaceId, repositorySlug, firstResult.Uuid).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

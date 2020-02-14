@@ -1,6 +1,6 @@
 ﻿namespace Bitbucket.Cloud.Net.Models
 {
-	public class TypedBranchName : BranchName
+	public class HasType
 	{
 		public string Type { get; set; }
 	}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common.Models;
 using Bitbucket.Cloud.Net.Models;
@@ -44,9 +45,9 @@ namespace Bitbucket.Cloud.Net
 			return await HandleResponseAsync<Webhook>(response).ConfigureAwait(false);
 		}
 
-		public async Task<Webhook> GetRepositoryWebhookAsync(string workspaceId, string repositorySlug, string webhookId)
+		public async Task<Webhook> GetRepositoryWebhookAsync(string workspaceId, string repositorySlug, Guid webhookUuid)
 		{
-			return await GetHooksUrl(workspaceId, repositorySlug, webhookId)
+			return await GetHooksUrl(workspaceId, repositorySlug, webhookUuid.ToString("B"))
 				.GetJsonAsync<Webhook>()
 				.ConfigureAwait(false);
 		}

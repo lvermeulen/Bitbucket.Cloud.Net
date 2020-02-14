@@ -104,7 +104,7 @@ C# Client for Bitbucket Cloud
                     * [X] Schedules
                         * [X] Schedule Uuid
                             * [X] Executions
-                    * [ ] Ssh
+                    * [X] Ssh
                         * [X] Key Pair
                         * [X] Known Hosts
                             * [X] Known Host Uuid

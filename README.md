@@ -52,8 +52,8 @@ C# Client for Bitbucket Cloud
                     * [X] Target User Name
                 * [X] Deploy Keys
                     * [X] Key Id
-                * [ ] Deployments
-                    * [ ] Deployment Uuid
+                * [X] Deployments
+                    * [X] Deployment Uuid
                 * [ ] Deployments Config
                     * [ ] Environments
                         * [ ] Environment Uuid

@@ -65,9 +65,9 @@ C# Client for Bitbucket Cloud
                     * [X] Spec
                 * [X] Downloads
                     * [X] Filename
-                * [ ] Environments
-                    * [ ] Environment Uuid
-                        * [ ] Changes
+                * [X] Environments
+                    * [X] Environment Uuid
+                        * [X] Changes
                 * [X] File History
                     * [X] Node
                         * [X] Path

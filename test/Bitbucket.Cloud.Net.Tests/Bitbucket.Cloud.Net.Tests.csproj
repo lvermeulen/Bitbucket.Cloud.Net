@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="v1\" />
-    <Folder Include="v2\Repositories\DeploymentsConfig\" />
   </ItemGroup>
 
 </Project>

@@ -26,7 +26,7 @@ C# Client for Bitbucket Cloud
         * [ ] Subject Type
     * [ ] Pull Requests
     * [X] Repositories
-        * [ ] Workspace
+        * [X] Workspace
             * [X] Repo Slug
                 * [X] Branch Restrictions
                     * [X] Id
@@ -54,11 +54,11 @@ C# Client for Bitbucket Cloud
                     * [X] Key Id
                 * [X] Deployments
                     * [X] Deployment Uuid
-                * [ ] Deployments Config
-                    * [ ] Environments
-                        * [ ] Environment Uuid
-                            * [ ] Variables
-                                * [ ] Variable Uuid
+                * [X] Deployments Config
+                    * [X] Environments
+                        * [X] Environment Uuid
+                            * [X] Variables
+                                * [X] Variable Uuid
                 * [X] Diff
                     * [X] Spec
                 * [X] Diffstat

@@ -74,16 +74,18 @@ C# Client for Bitbucket Cloud
                 * [X] Forks
                 * [X] Hooks
                     * [X] Uid
-                * [ ] Issues
-                    * [ ] Issue Id
-                        * [ ] Attachments
-                            * [ ] Path
-                        * [ ] Changes
-                            * [ ] Change Id
-                        * [ ] Comments
-                            * [ ] Comment Id
-                        * [ ] Vote
-                        * [ ] Watch
+                * [X] Issues
+                    * [X] Export
+                    * [X] Import
+                    * [X] Issue Id
+                        * [X] Attachments
+                            * [X] Path
+                        * [X] Changes
+                            * [X] Change Id
+                        * [X] Comments
+                            * [X] Comment Id
+                        * [X] Vote
+                        * [X] Watch
                 * [X] Milestones
                     * [X] Milestone Id
                 * [X] Patch

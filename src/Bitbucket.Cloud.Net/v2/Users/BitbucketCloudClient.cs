@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common.Models;
 using Bitbucket.Cloud.Net.Models;
@@ -27,7 +26,7 @@ namespace Bitbucket.Cloud.Net
 				.PostJsonAsync(webhook)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<Webhook>(response);
+			return await HandleResponseAsync<Webhook>(response).ConfigureAwait(false);
 		}
 
 		public async Task<IEnumerable<Webhook>> GetUserWebhooksAsync(string userName, int? maxPages = null)
@@ -50,7 +49,7 @@ namespace Bitbucket.Cloud.Net
 				.PutJsonAsync(webhook)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<Webhook>(response);
+			return await HandleResponseAsync<Webhook>(response).ConfigureAwait(false);
 		}
 
 		public async Task<Webhook> GetUserWebhookAsync(string userName, string webhookId)
@@ -68,7 +67,7 @@ namespace Bitbucket.Cloud.Net
 				.DeleteAsync()
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<bool>(response);
+			return await HandleResponseAsync<bool>(response).ConfigureAwait(false);
 		}
 
 		public async Task<Variable> CreateUserVariableAsync(string userName, Variable variable)
@@ -78,7 +77,7 @@ namespace Bitbucket.Cloud.Net
 				.PostJsonAsync(variable)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<Variable>(response);
+			return await HandleResponseAsync<Variable>(response).ConfigureAwait(false);
 		}
 
 		public async Task<IEnumerable<Variable>> GetUserVariablesAsync(string userName, int? maxPages = null)
@@ -101,7 +100,7 @@ namespace Bitbucket.Cloud.Net
 				.PutJsonAsync(variable)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<Variable>(response);
+			return await HandleResponseAsync<Variable>(response).ConfigureAwait(false);
 		}
 
 		public async Task<Variable> GetUserVariableAsync(string userName, string variableId)
@@ -119,7 +118,7 @@ namespace Bitbucket.Cloud.Net
 				.DeleteAsync()
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<bool>(response);
+			return await HandleResponseAsync<bool>(response).ConfigureAwait(false);
 		}
 
 		public async Task<bool> UpdateUserApplicationPropertyValueAsync(string userName, string appKey, string propertyName, string propertyValue)
@@ -129,7 +128,7 @@ namespace Bitbucket.Cloud.Net
 				.PutStringAsync(propertyValue)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync(response);
+			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
 
 		public async Task<string> GetUserApplicationPropertyValueAsync(string userName, string appKey, string propertyName)
@@ -147,7 +146,7 @@ namespace Bitbucket.Cloud.Net
 				.DeleteAsync()
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync(response);
+			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
 
 		public async Task<IEnumerable<Repository>> GetUserRepositoriesAsync(string userName, int? maxPages = null)
@@ -188,7 +187,7 @@ namespace Bitbucket.Cloud.Net
 				.PostJsonAsync(sshKey)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<SshKey>(response);
+			return await HandleResponseAsync<SshKey>(response).ConfigureAwait(false);
 		}
 
 		public async Task<IEnumerable<SshKey>> GetUserSshKeysAsync(string userName, int? maxPages = null)

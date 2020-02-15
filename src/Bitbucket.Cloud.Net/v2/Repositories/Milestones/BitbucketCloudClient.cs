@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common.Models;
 using Bitbucket.Cloud.Net.Models;

@@ -30,7 +30,6 @@
     <Folder Include="v2\Repositories\Deployments\" />
     <Folder Include="v2\Repositories\Environments\" />
     <Folder Include="v2\Repositories\Issues\" />
-    <Folder Include="v2\Repositories\Milestones\" />
   </ItemGroup>
 
 </Project>

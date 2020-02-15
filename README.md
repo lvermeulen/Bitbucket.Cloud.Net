@@ -84,8 +84,8 @@ C# Client for Bitbucket Cloud
                             * [ ] Comment Id
                         * [ ] Vote
                         * [ ] Watch
-                * [ ] Milestones
-                    * [ ] Milestone Id
+                * [X] Milestones
+                    * [X] Milestone Id
                 * [X] Patch
                     * [X] Spec
                 * [X] Pipelines

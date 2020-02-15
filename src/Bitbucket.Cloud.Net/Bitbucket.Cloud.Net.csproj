@@ -23,7 +23,6 @@
     <Folder Include="v2\Repositories\DeploymentsConfig\" />
     <Folder Include="v2\Repositories\Environments\" />
     <Folder Include="v2\Repositories\Issues\" />
-    <Folder Include="v2\Repositories\Milestones\" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ namespace Bitbucket.Cloud.Net.Tests.Common.MultiPart
 	public class MultiPartTests
 	{
 		[Fact]
-		public void ParseContent()
+		public void ParseMultiPartRelated()
 		{
 			#region multipart/related
 
@@ -124,6 +124,46 @@ EnNN036IaZePUuIcK533NVfal7/5yjWeot2z9ta1cAczHEf7I+3J0ws9Cgx0fsOFpmlfwKcWPuBQ
 73Oc4FHzBaZ8llq4q1mr5B2mOUCt815qYR8eB1hG2VJ7j35q4RofaH7IG+Xrf/PfJhfmwtfFYoIN
 AqxFUD6OMxcvkO+UfKfkOyXfKdsv/AYCHMLVkHAFWgAAAABJRU5ErkJggg==
 --===============1438169132528273974==--
+";
+
+			#endregion
+
+			var parts = content.ParseContent();
+			Assert.NotNull(parts);
+		}
+
+		[Fact]
+		public void ParseMultiPartFormData()
+		{
+			#region multipart/formdata
+
+			const string content = @"HTTP/1.1 200 OK
+Content-Length: 951
+Content-Type: multipart/form-data; boundary=----------------------------63a4b224c59f
+
+------------------------------63a4b224c59f
+Content-Disposition: form-data; name=""title""
+Content-Type: text/plain; charset=""utf-8""
+
+My snippet
+------------------------------63a4b224c59f--
+Content-Disposition: attachment; name=""file""; filename=""foo.txt""
+Content-Type: text/plain
+
+foo
+
+------------------------------63a4b224c59f
+Content-Disposition: attachment; name=""file""; filename=""image.png""
+Content-Transfer-Encoding: base64
+Content-Type: application/octet-stream
+
+iVBORw0KGgoAAAANSUhEUgAAABQAAAAoCAYAAAD+MdrbAAABD0lEQVR4Ae3VMUoDQRTG8ccUaW2m
+TKONFxArJYJamCvkCnZTaa+VnQdJSBFl2SMsLFrEWNjZBZs0JgiL/+KrhhVmJRbCLPx4O+/DT2TB
+cbblJxf+UWFVVRNsEGAtgvJxnLm2H+A5RQ93uIl+3632PZyl/skjfOn9Gvdwmlcw5aPUwimG+NT5
+EnNN036IaZePUuIcK533NVfal7/5yjWeot2z9ta1cAczHEf7I+3J0ws9Cgx0fsOFpmlfwKcWPuBQ
+73Oc4FHzBaZ8llq4q1mr5B2mOUCt815qYR8eB1hG2VJ7j35q4RofaH7IG+Xrf/PfJhfmwtfFYoIN
+AqxFUD6OMxcvkO+UfKfkOyXfKdsv/AYCHMLVkHAFWgAAAABJRU5ErkJggg==
+------------------------------63a4b224c59f--
 ";
 
 			#endregion

@@ -7,6 +7,7 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 	{
 		public string ContentType { get; }
 		public string TransferEncoding { get; }
+		public string ContentDispositionName { get; }
 		public string ContentDispositionFileName { get; }
 		public string Contents { get; }
 
@@ -14,10 +15,11 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 		public string AsText() => Contents;
 		public byte[] AsBytes() => Encoding.UTF8.GetBytes(Contents);
 
-		public ContentPart(string contentType, string transferEncoding, string contentDispositionFileName, string contents)
+		public ContentPart(string contentType, string transferEncoding, string contentDispositionName, string contentDispositionFileName, string contents)
 		{
 			ContentType = contentType;
 			TransferEncoding = transferEncoding;
+			ContentDispositionName = contentDispositionName;
 			ContentDispositionFileName = contentDispositionFileName;
 			Contents = contents;
 		}

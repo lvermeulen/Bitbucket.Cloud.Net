@@ -108,22 +108,31 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 			return parts?[1].Trim();
 		}
 
+		private static string GetContentDispositionName(this IEnumerable<string> lines)
+		{
+			string line = lines.FirstOrDefault(x => x.StartsWith("Content-Disposition:"));
+			var parts = line?.Split(new[] { ": " }, StringSplitOptions.None);
+			parts = parts?[1].Split(new[] { "; " }, StringSplitOptions.None);
+			line = parts?.FirstOrDefault(x => x.StartsWith("name", StringComparison.OrdinalIgnoreCase));
+			parts = line?.Split('=');
+			return parts?[1].Trim('"');
+		}
+
 		private static string GetContentDispositionFileName(this IEnumerable<string> lines)
 		{
 			string line = lines.FirstOrDefault(x => x.StartsWith("Content-Disposition:"));
 			var parts = line?.Split(new[] { ": " }, StringSplitOptions.None);
 			parts = parts?[1].Split(new[] { "; " }, StringSplitOptions.None);
-			parts = parts?[1].Split('=');
+			line = parts?.FirstOrDefault(x => x.StartsWith("filename", StringComparison.OrdinalIgnoreCase));
+			parts = line?.Split('=');
 			return parts?[1].Trim('"');
 		}
 
 		private static string GetContents(this IEnumerable<string> lines)
 		{
-			var collection = lines
+			return string.Concat(lines
 				.SkipUntil(x => x.Length == 0)
-				.TakeWhile(_ => true)
-				.SkipLast();
-			return string.Concat(collection);
+				.TakeWhile(x => x.Length != 0));
 		}
 
 		private static ContentPart ToContentPart(this ContentBlock contentBlock)
@@ -132,15 +141,16 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 
 			string contentType = lines.GetContentType();
 			string transferEncoding = lines.GetTransferEncoding();
+			string contentDispositionName = lines.GetContentDispositionName();
 			string contentDispositionFileName = lines.GetContentDispositionFileName();
-			var contents = lines.GetContents();
+			string contents = lines.GetContents();
 
 			if (transferEncoding?.Equals("base64", StringComparison.OrdinalIgnoreCase) == true)
 			{
 				contents = contents.FromBase64String();
 			}
 
-			return new ContentPart(contentType, transferEncoding, contentDispositionFileName, contents);
+			return new ContentPart(contentType, transferEncoding, contentDispositionName, contentDispositionFileName, contents);
 		}
 
 		private static List<ContentPart> ToContentParts(this IEnumerable<ContentBlock> contentBlocks)
@@ -181,8 +191,13 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 
 		private static List<ContentBlock> ParseContentBlocks(this IList<string> contentLines, string boundary)
 		{
+			if (boundary == null)
+			{
+				throw new ArgumentNullException(nameof(boundary));
+			}
+
 			var boundaries = contentLines.GetLineNumbers(x => x.Contains(boundary))
-				.Skip(1);	// dont't need where boundary is declared
+				.Skip(1);   // dont't need where boundary is declared
 
 			var contentLineBlocks = contentLines.GetContentLineBlocks(boundaries);
 

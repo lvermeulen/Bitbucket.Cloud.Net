@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/lvermeulen/Bitbucket.Cloud.Net</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/lvermeulen/Bitbucket.Cloud.Net/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>bitbucket cloud org</PackageTags>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

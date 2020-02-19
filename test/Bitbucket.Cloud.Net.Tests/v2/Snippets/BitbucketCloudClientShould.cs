@@ -1,0 +1,71 @@
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Bitbucket.Cloud.Net.Common.MultiPart;
+using Bitbucket.Cloud.Net.Models;
+using Xunit;
+
+// ReSharper disable once CheckNamespace
+namespace Bitbucket.Cloud.Net.Tests
+{
+	public partial class BitbucketCloudClientShould
+	{
+		[Theory]
+		[InlineData(Roles.Owner)]
+		public async Task GetSnippetsAsync(Roles role)
+		{
+			var result = await _client.GetSnippetsAsync(role).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		[InlineData("luve", Roles.Owner)]
+		public async Task GetWorkspaceSnippetsAsync(string workspaceId, Roles role)
+		{
+			var result = await _client.GetWorkspaceSnippetsAsync(workspaceId, role).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		[InlineData("luve")]
+		public async Task GetWorkspaceSnippetAsync(string workspaceId)
+		{
+			var results = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetAsync(workspaceId, firstResult.Id).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		//[InlineData("luve", SnippetsAccept.ApplicationJson)]
+		//[InlineData("luve", SnippetsAccept.MultiPartRelated)]
+		[InlineData("luve", SnippetsAccept.MultiPartFormData)]
+		public async Task GetWorkspaceSnippetWithContentPartsAsync(string workspaceId, SnippetsAccept accept)
+		{
+			static object ContentPartsHandler(ContentPart contentPart)
+			{
+				return contentPart?.ContentType switch
+				{
+					"text/plain" => contentPart.AsText(),
+					"image/png" => contentPart.AsBytes(),
+					"application/octet-stream" => contentPart.AsBytes(),
+					_ => contentPart?.AsJson<Snippet>()
+				};
+			}
+
+			var results = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetAsync(workspaceId, firstResult.Id, accept, ContentPartsHandler).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+	}
+}

@@ -213,21 +213,22 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 
 		private static string FindBoundary(this IEnumerable<string> contentLines)
 		{
-			var contentTypeLine = contentLines.FirstOrDefault(line => line.StartsWith("Content-Type:"));
-			if (contentTypeLine == null)
+			var lines = contentLines.ToList();
+			var line = lines.Find(x => x.StartsWith("Content-Type:"));
+			if (line == null)
 			{
 				return null;
 			}
 
-			var contentTypeParts = contentTypeLine.Split(new[] { "; " }, StringSplitOptions.None);
-			var boundaryPart = Array.Find(contentTypeParts, part => part.StartsWith("boundary"));
+			var parts = line.Split(new[] { "; " }, StringSplitOptions.None);
+			var boundaryPart = Array.Find(parts, part => part.StartsWith("boundary"));
 
-			return boundaryPart?.Split(new[] { '=' }, 2)[1].Trim('"');
+			return boundaryPart?.Split(new[] { '=' }, 2)[1].Trim('"') ?? lines.Find(x => x.StartsWith("--=="));
 		}
 
 		public static List<ContentPart> ParseContent(this string content)
 		{
-			var contentLines = content.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+			var contentLines = content.Split(new[] { '\n' }, StringSplitOptions.None).ToList();
 
 			string boundary = contentLines.FindBoundary();
 			var contentBlocks = contentLines.ParseContentBlocks(boundary);

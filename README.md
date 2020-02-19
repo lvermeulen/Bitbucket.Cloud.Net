@@ -143,10 +143,11 @@ C# Client for Bitbucket Cloud
                     * [X] Version Id
                 * [X] Watchers
     * [ ] Snippets
-        * [ ] User Name
+        * [ ] Workspace
             * [ ] Encoded Id
                 * [ ] Comments
                 * [ ] Commits
+                * [ ] Files
                 * [ ] Watch
                 * [ ] Watchers
                 * [ ] Node Id

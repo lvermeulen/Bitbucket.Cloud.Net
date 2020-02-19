@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Bitbucket.Cloud.Net.Common.MultiPart
 {
-	public static class MultiPartExtensions
+	public static class MultipartExtensions
 	{
 		public static IEnumerable<TSource> SkipUntil<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 		{
@@ -135,9 +135,9 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 				.TakeWhile(x => x.Length != 0));
 		}
 
-		private static ContentPart ToContentPart(this ContentBlock contentBlock)
+		private static MultipartContentSection ToMultipartContentSection(this MultipartContentBlock multipartContentBlock)
 		{
-			var lines = contentBlock.Lines;
+			var lines = multipartContentBlock.Lines;
 
 			string contentType = lines.GetContentType();
 			string transferEncoding = lines.GetTransferEncoding();
@@ -150,13 +150,13 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 				contents = contents.FromBase64String();
 			}
 
-			return new ContentPart(contentType, transferEncoding, contentDispositionName, contentDispositionFileName, contents);
+			return new MultipartContentSection(contentType, transferEncoding, contentDispositionName, contentDispositionFileName, contents);
 		}
 
-		private static List<ContentPart> ToContentParts(this IEnumerable<ContentBlock> contentBlocks)
+		private static List<MultipartContentSection> ToMultipartContentSections(this IEnumerable<MultipartContentBlock> nultipartContentBlocks)
 		{
-			return contentBlocks
-				.Select(ToContentPart)
+			return nultipartContentBlocks
+				.Select(ToMultipartContentSection)
 				.ToList();
 		}
 
@@ -189,7 +189,7 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 			return results;
 		}
 
-		private static List<ContentBlock> ParseContentBlocks(this IList<string> contentLines, string boundary)
+		private static List<MultipartContentBlock> ParseContentBlocks(this IList<string> contentLines, string boundary)
 		{
 			if (boundary == null)
 			{
@@ -201,38 +201,38 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 
 			var contentLineBlocks = contentLines.GetContentLineBlocks(boundaries);
 
-			var results = new List<ContentBlock>();
+			var results = new List<MultipartContentBlock>();
 			foreach (var contentLineBlock in contentLineBlocks)
 			{
-				results.Add(new ContentBlock(contentLineBlock
+				results.Add(new MultipartContentBlock(contentLineBlock
 					.SkipWhile(x => !x.Contains(boundary)).Skip(1)
 					.TakeWhile(x => !x.Contains(boundary))));
 			}
 			return results;
 		}
 
-		private static string FindBoundary(this IEnumerable<string> contentLines)
+		private static string FindMultipartBoundary(this IEnumerable<string> contentLines)
 		{
 			var lines = contentLines.ToList();
-			var line = lines.Find(x => x.StartsWith("Content-Type:"));
+			string line = lines.Find(x => x.StartsWith("Content-Type:"));
 			if (line == null)
 			{
 				return null;
 			}
 
 			var parts = line.Split(new[] { "; " }, StringSplitOptions.None);
-			var boundaryPart = Array.Find(parts, part => part.StartsWith("boundary"));
+			string boundaryPart = Array.Find(parts, part => part.StartsWith("boundary"));
 
 			return boundaryPart?.Split(new[] { '=' }, 2)[1].Trim('"') ?? lines.Find(x => x.StartsWith("--=="));
 		}
 
-		public static List<ContentPart> ParseContent(this string content)
+		public static List<MultipartContentSection> ParseContent(this string content)
 		{
 			var contentLines = content.Split(new[] { '\n' }, StringSplitOptions.None).ToList();
 
-			string boundary = contentLines.FindBoundary();
+			string boundary = contentLines.FindMultipartBoundary();
 			var contentBlocks = contentLines.ParseContentBlocks(boundary);
-			return contentBlocks.ToContentParts();
+			return contentBlocks.ToMultipartContentSections();
 		}
 	}
 }

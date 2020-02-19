@@ -41,19 +41,18 @@ namespace Bitbucket.Cloud.Net.Tests
 		}
 
 		[Theory]
-		//[InlineData("luve", SnippetsAccept.ApplicationJson)]
-		//[InlineData("luve", SnippetsAccept.MultiPartRelated)]
-		[InlineData("luve", SnippetsAccept.MultiPartFormData)]
-		public async Task GetWorkspaceSnippetWithContentPartsAsync(string workspaceId, SnippetsAccept accept)
+		[InlineData("luve", SnippetsAccept.ApplicationJson)]
+		[InlineData("luve", SnippetsAccept.MultipartRelated)]
+		public async Task GetWorkspaceSnippetWithMultipartContentSectionHandlerAsync(string workspaceId, SnippetsAccept accept)
 		{
-			static object ContentPartsHandler(ContentPart contentPart)
+			static object MultipartContentSectionHandler(MultipartContentSection multipartContentSection)
 			{
-				return contentPart?.ContentType switch
+				return multipartContentSection?.ContentType switch
 				{
-					"text/plain" => contentPart.AsText(),
-					"image/png" => contentPart.AsBytes(),
-					"application/octet-stream" => contentPart.AsBytes(),
-					_ => contentPart?.AsJson<Snippet>()
+					"text/plain" => multipartContentSection.AsText(),
+					"image/png" => multipartContentSection.AsBytes(),
+					"application/octet-stream" => multipartContentSection.AsBytes(),
+					_ => multipartContentSection?.AsJson<Snippet>()
 				};
 			}
 
@@ -64,7 +63,7 @@ namespace Bitbucket.Cloud.Net.Tests
 				return;
 			}
 
-			var result = await _client.GetWorkspaceSnippetAsync(workspaceId, firstResult.Id, accept, ContentPartsHandler).ConfigureAwait(false);
+			var result = await _client.GetWorkspaceSnippetAsync(workspaceId, firstResult.Id, accept, MultipartContentSectionHandler).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

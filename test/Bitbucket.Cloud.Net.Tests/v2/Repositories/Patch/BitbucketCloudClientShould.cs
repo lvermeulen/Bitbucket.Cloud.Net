@@ -18,7 +18,7 @@ namespace Bitbucket.Cloud.Net.Tests
 				return;
 			}
 
-			var result = await _client.GetRepositoryPatchAsync(workspaceId, repositorySlug, firstResult.Hash).ConfigureAwait(false);
+			string result = await _client.GetRepositoryPatchAsync(workspaceId, repositorySlug, firstResult.Hash).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

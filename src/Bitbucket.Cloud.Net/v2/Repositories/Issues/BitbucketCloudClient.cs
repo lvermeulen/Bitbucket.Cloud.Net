@@ -27,7 +27,7 @@ namespace Bitbucket.Cloud.Net
 			return await HandleResponseAsync<Issue>(response).ConfigureAwait(false);
 		}
 
-		public async Task<IEnumerable<Issue>> GetRepositoryIssuesAsync(string workspaceId, string repositorySlug, int? maxPages = null) 
+		public async Task<IEnumerable<Issue>> GetRepositoryIssuesAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
 			var queryParamValues = new Dictionary<string, object>();
 

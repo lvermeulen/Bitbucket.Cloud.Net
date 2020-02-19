@@ -108,7 +108,7 @@ namespace Bitbucket.Cloud.Net.Tests
 				return;
 			}
 
-			var result = await _client.GetRepositoryPullRequestDiffAsync(workspaceId, repositorySlug, firstResult.Id.ToString()).ConfigureAwait(false);
+			string result = await _client.GetRepositoryPullRequestDiffAsync(workspaceId, repositorySlug, firstResult.Id.ToString()).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 
@@ -153,7 +153,7 @@ namespace Bitbucket.Cloud.Net.Tests
 				return;
 			}
 
-			var result = await _client.GetRepositoryPullRequestPatchAsync(workspaceId, repositorySlug, firstResult.Id.ToString()).ConfigureAwait(false);
+			string result = await _client.GetRepositoryPullRequestPatchAsync(workspaceId, repositorySlug, firstResult.Id.ToString()).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 

@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Bitbucket.Cloud.Net.Common.MultiPart
 {
-	public class ContentBlock
+	public class MultipartContentBlock
 	{
 		public IList<string> Lines { get; }
 
-		public ContentBlock(IEnumerable<string> lines)
+		public MultipartContentBlock(IEnumerable<string> lines)
 		{
 			Lines = lines.ToList();
 		}

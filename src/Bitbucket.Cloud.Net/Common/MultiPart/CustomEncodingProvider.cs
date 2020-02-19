@@ -19,12 +19,7 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 				return Encoding.UTF8;
 			}
 
-			if (name.Equals("\"us-ascii\"", StringComparison.OrdinalIgnoreCase))
-			{
-				return Encoding.ASCII;
-			}
-
-			return Encoding.Unicode;
+			return name.Equals("\"us-ascii\"", StringComparison.OrdinalIgnoreCase) ? Encoding.ASCII : Encoding.Unicode;
 		}
 	}
 }

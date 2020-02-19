@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Bitbucket.Cloud.Net.Tests.Common.MultiPart
 {
-	public class MultiPartTests
+	public class MultipartTests
 	{
 		[Fact]
 		public void ParseMultiPartRelated()

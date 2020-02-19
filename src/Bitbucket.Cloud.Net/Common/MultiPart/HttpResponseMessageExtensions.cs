@@ -13,7 +13,7 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 			Encoding.RegisterProvider(CustomEncodingProvider.Instance);
 		}
 
-		public static async Task<IEnumerable<ContentPart>> ReceiveMultiPartRelatedAsync(this Task<HttpResponseMessage> response)
+		public static async Task<IEnumerable<MultipartContentSection>> ReceiveMultipartRelatedAsync(this Task<HttpResponseMessage> response)
 		{
 			using var resp = await response.ConfigureAwait(false);
 			if (resp == null)
@@ -21,11 +21,11 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 				return null;
 			}
 
-			var contentString = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
+			string contentString = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
 			return contentString.ParseContent();
 		}
 
-		public static async Task<IEnumerable<ContentPart>> ReceiveMultiPartFormDataAsync(this Task<HttpResponseMessage> response)
+		public static async Task<IEnumerable<MultipartContentSection>> ReceiveMultipartFormdataAsync(this Task<HttpResponseMessage> response)
 		{
 			using var resp = await response.ConfigureAwait(false);
 			if (resp == null)
@@ -33,19 +33,19 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 				return null;
 			}
 
-			var contentString = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
+			string contentString = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
 			return contentString.ParseContent();
 		}
 
-		public static async Task<object> WithContentPartsAsync(this Task<IEnumerable<ContentPart>> contentPartsTask, Func<ContentPart, object> contentPartsHandler)
+		public static async Task<object> WithContentPartsAsync(this Task<IEnumerable<MultipartContentSection>> multipartContentSectionsTask, Func<MultipartContentSection, object> contentSectionHandler)
 		{
-			var contentParts = await contentPartsTask.ConfigureAwait(false);
-			foreach (var contentPart in contentParts)
+			var contentSections = await multipartContentSectionsTask.ConfigureAwait(false);
+			foreach (var contentSection in contentSections)
 			{
-				await Task.Run(() => contentPartsHandler?.Invoke(contentPart)).ConfigureAwait(false);
+				await Task.Run(() => contentSectionHandler?.Invoke(contentSection)).ConfigureAwait(false);
 			}
 
-			return contentPartsTask;
+			return multipartContentSectionsTask;
 		}
 	}
 }

@@ -8,8 +8,8 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 		{
 			return value switch
 			{
-				SnippetsAccept.MultiPartRelated => "multipart/related",
-				SnippetsAccept.MultiPartFormData => "multipart/formdata",
+				SnippetsAccept.MultipartRelated => "multipart/related",
+				SnippetsAccept.MultipartFormdata => "multipart/formdata",
 				_ => "application/json"
 			};
 		}

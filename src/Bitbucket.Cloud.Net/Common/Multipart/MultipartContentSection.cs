@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Bitbucket.Cloud.Net.Common.MultiPart
 {
-	public class ContentPart
+	public class MultipartContentSection
 	{
 		public string ContentType { get; }
 		public string TransferEncoding { get; }
@@ -15,7 +15,7 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 		public string AsText() => Contents;
 		public byte[] AsBytes() => Encoding.UTF8.GetBytes(Contents);
 
-		public ContentPart(string contentType, string transferEncoding, string contentDispositionName, string contentDispositionFileName, string contents)
+		public MultipartContentSection(string contentType, string transferEncoding, string contentDispositionName, string contentDispositionFileName, string contents)
 		{
 			ContentType = contentType;
 			TransferEncoding = transferEncoding;

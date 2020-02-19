@@ -3,7 +3,7 @@
 	public enum SnippetsAccept
 	{
 		ApplicationJson,
-		MultiPartRelated,
-		MultiPartFormData
+		MultipartRelated,
+		MultipartFormdata
 	}
 }

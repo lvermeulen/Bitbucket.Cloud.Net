@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common.Converters;
 using Bitbucket.Cloud.Net.Common.Models;
@@ -47,23 +48,24 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<object> GetWorkspaceSnippetAsync(string workspaceId, string snippetId, SnippetsAccept accept = SnippetsAccept.ApplicationJson, Func<ContentPart, object> contentPartsHandler = null)
+		public async Task<object> GetWorkspaceSnippetAsync(string workspaceId, string snippetId, SnippetsAccept accept = SnippetsAccept.ApplicationJson, Func<MultipartContentSection, object> contentSectionHandler = null)
 		{
 			string acceptString = SnippetsAcceptConverter.ConvertToString(accept);
 			var request = GetSnippetsUrl(workspaceId)
 				.AppendPathSegment(snippetId)
+				.AllowHttpStatus(HttpStatusCode.NotAcceptable)
 				.WithHeader("Accept", acceptString);
 
 			return accept switch
 			{
-				SnippetsAccept.MultiPartRelated => await request
-					.GetMultiPartRelatedAsync()
-					.WithContentPartsAsync(contentPartsHandler)
+				SnippetsAccept.MultipartRelated => await request
+					.GetMultipartRelatedAsync()
+					.WithContentPartsAsync(contentSectionHandler)
 					.ConfigureAwait(false),
 
-				SnippetsAccept.MultiPartFormData => await request
-					.GetMultiPartFormDataAsync()
-					.WithContentPartsAsync(contentPartsHandler)
+				SnippetsAccept.MultipartFormdata => await request
+					.GetMultipartFormdataAsync()
+					.WithContentPartsAsync(contentSectionHandler)
 					.ConfigureAwait(false),
 
 				_ => await request

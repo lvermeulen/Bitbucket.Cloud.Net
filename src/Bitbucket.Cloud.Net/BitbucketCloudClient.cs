@@ -54,7 +54,7 @@ namespace Bitbucket.Cloud.Net
         private async Task<bool> ReadResponseContentAsync(HttpResponseMessage responseMessage)
         {
             string content = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return content == "";
+            return content.Length == 0;
         }
 
         private async Task HandleErrorsAsync(HttpResponseMessage response)
@@ -62,7 +62,7 @@ namespace Bitbucket.Cloud.Net
             if (!response.IsSuccessStatusCode)
             {
                 var errorResponse = await ReadResponseContentAsync<ErrorResponse>(response).ConfigureAwait(false);
-                
+
                 string errorMessage = string.Join(Environment.NewLine, errorResponse?.Error?.Message);
                 throw new InvalidOperationException($"Http request failed ({(int)response.StatusCode} - {response.StatusCode}):\n{errorMessage}");
             }

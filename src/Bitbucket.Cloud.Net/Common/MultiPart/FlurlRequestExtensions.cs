@@ -9,14 +9,16 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 {
 	public static class FlurlRequestExtensions
 	{
-		public static Task<IEnumerable<ContentPart>> GetMultiPartRelatedAsync(this IFlurlRequest request, CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "<Pending>")]
+		public static Task<IEnumerable<MultipartContentSection>> GetMultipartRelatedAsync(this IFlurlRequest request, CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
 		{
-			return request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken, completionOption: completionOption).ReceiveMultiPartRelatedAsync();
+			return request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken, completionOption: completionOption).ReceiveMultipartRelatedAsync();
 		}
 
-		public static Task<IEnumerable<ContentPart>> GetMultiPartFormDataAsync(this IFlurlRequest request, CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "<Pending>")]
+		public static Task<IEnumerable<MultipartContentSection>> GetMultipartFormdataAsync(this IFlurlRequest request, CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
 		{
-			return request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken, completionOption: completionOption).ReceiveMultiPartFormDataAsync();
+			return request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken, completionOption: completionOption).ReceiveMultipartFormdataAsync();
 		}
 	}
 }

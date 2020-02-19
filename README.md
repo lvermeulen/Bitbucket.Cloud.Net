@@ -142,9 +142,9 @@ C# Client for Bitbucket Cloud
                 * [X] Versions
                     * [X] Version Id
                 * [X] Watchers
-    * [ ] Snippets
-        * [ ] Workspace
-            * [ ] Encoded Id
+    * [X] Snippets
+        * [X] Workspace
+            * [X] Encoded Id
                 * [ ] Comments
                 * [ ] Commits
                 * [ ] Files

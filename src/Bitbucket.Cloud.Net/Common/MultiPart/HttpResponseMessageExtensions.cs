@@ -13,19 +13,7 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 			Encoding.RegisterProvider(MultipartEncodingProvider.Instance);
 		}
 
-		public static async Task<IEnumerable<MultipartContentSection>> ReceiveMultipartRelatedAsync(this Task<HttpResponseMessage> response)
-		{
-			using var resp = await response.ConfigureAwait(false);
-			if (resp == null)
-			{
-				return null;
-			}
-
-			string contentString = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
-			return contentString.ParseContent();
-		}
-
-		public static async Task<IEnumerable<MultipartContentSection>> ReceiveMultipartFormdataAsync(this Task<HttpResponseMessage> response)
+		public static async Task<IEnumerable<MultipartContentSection>> ReceiveMultipartAsync(this Task<HttpResponseMessage> response)
 		{
 			using var resp = await response.ConfigureAwait(false);
 			if (resp == null)

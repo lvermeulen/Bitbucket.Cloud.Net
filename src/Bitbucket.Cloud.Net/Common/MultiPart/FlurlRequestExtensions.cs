@@ -10,15 +10,9 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 	public static class FlurlRequestExtensions
 	{
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "<Pending>")]
-		public static Task<IEnumerable<MultipartContentSection>> GetMultipartRelatedAsync(this IFlurlRequest request, CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
+		public static Task<IEnumerable<MultipartContentSection>> GetMultipartAsync(this IFlurlRequest request, CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
 		{
-			return request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken, completionOption: completionOption).ReceiveMultipartRelatedAsync();
-		}
-
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0034:Simplify 'default' expression", Justification = "<Pending>")]
-		public static Task<IEnumerable<MultipartContentSection>> GetMultipartFormdataAsync(this IFlurlRequest request, CancellationToken cancellationToken = default(CancellationToken), HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
-		{
-			return request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken, completionOption: completionOption).ReceiveMultipartFormdataAsync();
+			return request.SendAsync(HttpMethod.Get, cancellationToken: cancellationToken, completionOption: completionOption).ReceiveMultipartAsync();
 		}
 	}
 }

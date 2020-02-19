@@ -3,9 +3,9 @@ using System.Text;
 
 namespace Bitbucket.Cloud.Net.Common.MultiPart
 {
-	public class CustomEncodingProvider : EncodingProvider
+	public class MultipartEncodingProvider : EncodingProvider
 	{
-		public static CustomEncodingProvider Instance => new CustomEncodingProvider();
+		public static MultipartEncodingProvider Instance => new MultipartEncodingProvider();
 
 		public override Encoding GetEncoding(int codepage)
 		{

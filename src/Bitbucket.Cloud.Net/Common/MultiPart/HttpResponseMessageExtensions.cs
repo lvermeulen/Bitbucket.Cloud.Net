@@ -10,7 +10,7 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 	{
 		static HttpResponseMessageExtensions()
 		{
-			Encoding.RegisterProvider(CustomEncodingProvider.Instance);
+			Encoding.RegisterProvider(MultipartEncodingProvider.Instance);
 		}
 
 		public static async Task<IEnumerable<MultipartContentSection>> ReceiveMultipartRelatedAsync(this Task<HttpResponseMessage> response)

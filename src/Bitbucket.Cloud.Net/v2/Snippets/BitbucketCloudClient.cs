@@ -60,12 +60,12 @@ namespace Bitbucket.Cloud.Net
 			{
 				SnippetsAccept.MultipartRelated => await request
 					.GetMultipartAsync()
-					.WithContentPartsAsync(contentSectionHandler)
+					.WithMultipartContentSectionsAsync(contentSectionHandler)
 					.ConfigureAwait(false),
 
 				SnippetsAccept.MultipartFormdata => await request
 					.GetMultipartAsync()
-					.WithContentPartsAsync(contentSectionHandler)
+					.WithMultipartContentSectionsAsync(contentSectionHandler)
 					.ConfigureAwait(false),
 
 				_ => await request

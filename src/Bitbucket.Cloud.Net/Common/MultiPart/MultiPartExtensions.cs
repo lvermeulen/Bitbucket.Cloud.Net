@@ -173,14 +173,14 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 			});
 		}
 
-		private static IEnumerable<int> GetLineNumbers(this IList<string> lines, Predicate<string> predicate)
+		private static IEnumerable<int> GetLineNumbers(this IList<string> lines, string boundary)
 		{
 			var results = new List<int>();
 
 			for (int i = 0; i < lines.Count; i++)
 			{
 				string line = lines[i];
-				if (predicate(line))
+				if (line.StartsWith($"--{boundary}"))
 				{
 					results.Add(i);
 				}
@@ -196,9 +196,7 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 				throw new ArgumentNullException(nameof(boundary));
 			}
 
-			var boundaries = contentLines.GetLineNumbers(x => x.Contains(boundary))
-				.Skip(1);   // dont't need where boundary is declared
-
+			var boundaries = contentLines.GetLineNumbers(boundary);
 			var contentLineBlocks = contentLines.GetContentLineBlocks(boundaries);
 
 			var results = new List<MultipartContentBlock>();
@@ -223,10 +221,11 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 			var parts = line.Split(new[] { "; " }, StringSplitOptions.None);
 			string boundaryPart = Array.Find(parts, part => part.StartsWith("boundary"));
 
-			return boundaryPart?.Split(new[] { '=' }, 2)[1].Trim('"') ?? lines.Find(x => x.StartsWith("--=="));
+			string result = boundaryPart?.Split(new[] { '=' }, 2)[1] ?? lines.Find(x => x.StartsWith("--"));
+			return result.Trim('\"', '\r');
 		}
 
-		public static List<MultipartContentSection> ParseContent(this string content)
+		public static List<MultipartContentSection> ReadMultipartContent(this string content)
 		{
 			var contentLines = content.Split(new[] { '\n' }, StringSplitOptions.None).ToList();
 

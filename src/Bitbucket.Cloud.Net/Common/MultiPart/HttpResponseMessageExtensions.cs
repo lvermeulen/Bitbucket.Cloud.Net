@@ -22,15 +22,15 @@ namespace Bitbucket.Cloud.Net.Common.MultiPart
 			}
 
 			string contentString = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
-			return contentString.ParseContent();
+			return contentString.ReadMultipartContent();
 		}
 
-		public static async Task<object> WithContentPartsAsync(this Task<IEnumerable<MultipartContentSection>> multipartContentSectionsTask, Func<MultipartContentSection, object> contentSectionHandler)
+		public static async Task<object> WithMultipartContentSectionsAsync(this Task<IEnumerable<MultipartContentSection>> multipartContentSectionsTask, Func<MultipartContentSection, object> multipartContentSectionHandler)
 		{
-			var contentSections = await multipartContentSectionsTask.ConfigureAwait(false);
-			foreach (var contentSection in contentSections)
+			var multipartContentSections = await multipartContentSectionsTask.ConfigureAwait(false);
+			foreach (var multipartContentSection in multipartContentSections)
 			{
-				await Task.Run(() => contentSectionHandler?.Invoke(contentSection)).ConfigureAwait(false);
+				await Task.Run(() => multipartContentSectionHandler?.Invoke(multipartContentSection)).ConfigureAwait(false);
 			}
 
 			return multipartContentSectionsTask;

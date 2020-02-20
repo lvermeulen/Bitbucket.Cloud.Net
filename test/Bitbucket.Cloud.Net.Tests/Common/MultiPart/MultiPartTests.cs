@@ -128,8 +128,9 @@ AqxFUD6OMxcvkO+UfKfkOyXfKdsv/AYCHMLVkHAFWgAAAABJRU5ErkJggg==
 
 			#endregion
 
-			var parts = content.ParseContent();
-			Assert.NotNull(parts);
+			var sections = content.ReadMultipartContent();
+			Assert.NotNull(sections);
+			Assert.Equal(3, sections.Count);
 		}
 
 		[Fact]
@@ -168,8 +169,9 @@ AqxFUD6OMxcvkO+UfKfkOyXfKdsv/AYCHMLVkHAFWgAAAABJRU5ErkJggg==
 
 			#endregion
 
-			var parts = content.ParseContent();
-			Assert.NotNull(parts);
+			var sections = content.ReadMultipartContent();
+			Assert.NotNull(sections);
+			Assert.Equal(3, sections.Count);
 		}
 	}
 }

@@ -18,6 +18,15 @@ namespace Bitbucket.Cloud.Net
 		private IFlurlRequest GetSnippetsUrl(string path) => GetSnippetsUrl()
 			.AppendPathSegment(path);
 
+		public async Task<Snippet> CreateSnippetAsync(Snippet snippet)
+		{
+			var response = await GetSnippetsUrl()
+				.PostJsonAsync(snippet)
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync<Snippet>(response).ConfigureAwait(false);
+		}
+
 		public async Task<IEnumerable<Snippet>> GetSnippetsAsync(Roles? role = null, int? maxPages = null)
 		{
 			var queryParamValues = new Dictionary<string, object>
@@ -33,6 +42,15 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
+		public async Task<Snippet> CreateWorkspaceSnippetAsync(string workspaceId, Snippet snippet)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.PostJsonAsync(snippet)
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync<Snippet>(response).ConfigureAwait(false);
+		}
+
 		public async Task<IEnumerable<Snippet>> GetWorkspaceSnippetsAsync(string workspaceId, Roles? role = null, int? maxPages = null)
 		{
 			var queryParamValues = new Dictionary<string, object>
@@ -46,6 +64,16 @@ namespace Bitbucket.Cloud.Net
 						.GetJsonAsync<PagedResults<Snippet>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
+		}
+
+		public async Task<Snippet> UpdateWorkspaceSnippetAsync(string workspaceId, string snippetId, Snippet snippet)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.PutJsonAsync(snippet)
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync<Snippet>(response).ConfigureAwait(false);
 		}
 
 		public async Task<object> GetWorkspaceSnippetAsync(string workspaceId, string snippetId, SnippetsAccept accept = SnippetsAccept.ApplicationJson, Func<MultipartContentSection, object> contentSectionHandler = null)
@@ -72,6 +100,78 @@ namespace Bitbucket.Cloud.Net
 					.GetJsonAsync<Snippet>()
 					.ConfigureAwait(false)
 			};
+		}
+
+		public async Task<bool> DeleteWorkspaceSnippetAsync(string workspaceId, string snippetId)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.DeleteAsync()
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync(response).ConfigureAwait(false);
+		}
+
+		public async Task<SnippetComment> CreateWorkspaceSnippetCommentAsync(string workspaceId, string snippetId, SnippetComment snippetComment)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/comments")
+				.PostJsonAsync(snippetComment)
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync<SnippetComment>(response).ConfigureAwait(false);
+		}
+
+		public async Task<IEnumerable<SnippetComment>> GetWorkspaceSnippetCommentsAsync(string workspaceId, string snippetId, int? maxPages = null, string sort = null)
+		{
+			var queryParamValues = new Dictionary<string, object>
+			{
+				[nameof(sort)] = sort
+			};
+
+			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
+					await GetSnippetsUrl(workspaceId)
+						.AppendPathSegment(snippetId)
+						.AppendPathSegment("/comments")
+						.SetQueryParams(qpv)
+						.GetJsonAsync<PagedResults<SnippetComment>>()
+						.ConfigureAwait(false))
+				.ConfigureAwait(false);
+		}
+
+		public async Task<SnippetComment> UpdateWorkspaceSnippetCommentAsync(string workspaceId, string snippetId, string snippetCommentId, SnippetComment snippetComment)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/comments")
+				.AppendPathSegment(snippetCommentId)
+				.PutJsonAsync(snippetComment)
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync<SnippetComment>(response).ConfigureAwait(false);
+		}
+
+		public async Task<SnippetComment> GetWorkspaceSnippetCommentAsync(string workspaceId, string snippetId, string snippetCommentId)
+		{
+			return await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/comments")
+				.AppendPathSegment(snippetCommentId)
+				.GetJsonAsync<SnippetComment>()
+				.ConfigureAwait(false);
+		}
+
+		public async Task<bool> DeleteWorkspaceSnippetCommentAsync(string workspaceId, string snippetId, string snippetCommentId)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/comments")
+				.AppendPathSegment(snippetCommentId)
+				.DeleteAsync()
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
 	}
 }

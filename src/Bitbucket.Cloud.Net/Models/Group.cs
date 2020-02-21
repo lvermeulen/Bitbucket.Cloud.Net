@@ -8,7 +8,7 @@ namespace Bitbucket.Cloud.Net.Models
 		public Links Links { get; set; }
 		[JsonProperty("full_slug")]
 		public string FullSlug { get; set; }
-		public Owner Owner { get; set; }
+		public Person Owner { get; set; }
 		public string Type { get; set; }
 		public string Slug { get; set; }
 	}

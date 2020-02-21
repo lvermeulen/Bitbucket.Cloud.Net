@@ -20,7 +20,7 @@ namespace Bitbucket.Cloud.Net.Models
         public Branch MainBranch { get; set; }
         [JsonProperty("has_issues")]
         public bool HasIssues { get; set; }
-        public Owner Owner { get; set; }
+        public Person Owner { get; set; }
         [JsonProperty("updated_on")]
         public DateTime? UpdatedOn { get; set; }
         public int Size { get; set; }

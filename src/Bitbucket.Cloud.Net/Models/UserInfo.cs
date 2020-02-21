@@ -1,7 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
-
-namespace Bitbucket.Cloud.Net.Models
+﻿namespace Bitbucket.Cloud.Net.Models
 {
 	public class UserInfo : Person
 	{

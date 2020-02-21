@@ -1,6 +1,6 @@
 ﻿namespace Bitbucket.Cloud.Net.Models
 {
-	public enum SnippetsAccept
+	public enum SnippetsContentTypes
 	{
 		ApplicationJson,
 		MultipartRelated,

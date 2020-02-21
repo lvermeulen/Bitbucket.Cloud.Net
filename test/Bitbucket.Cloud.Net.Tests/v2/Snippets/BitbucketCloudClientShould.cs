@@ -41,9 +41,9 @@ namespace Bitbucket.Cloud.Net.Tests
 		}
 
 		[Theory]
-		[InlineData("luve", SnippetsAccept.ApplicationJson)]
-		[InlineData("luve", SnippetsAccept.MultipartRelated)]
-		public async Task GetWorkspaceSnippetWithMultipartContentSectionHandlerAsync(string workspaceId, SnippetsAccept accept)
+		[InlineData("luve", SnippetsContentTypes.ApplicationJson)]
+		[InlineData("luve", SnippetsContentTypes.MultipartRelated)]
+		public async Task GetWorkspaceSnippetWithMultipartContentSectionHandlerAsync(string workspaceId, SnippetsContentTypes accept)
 		{
 			static object MultipartContentSectionHandler(MultipartContentSection multipartContentSection)
 			{
@@ -143,7 +143,7 @@ namespace Bitbucket.Cloud.Net.Tests
 
 		[Theory]
 		[InlineData("luve", "test_snippet_filename.txt")]
-		public async Task GetSnippetFileAsync(string workspaceId, string fileName)
+		public async Task GetWorkspaceSnippetFileAsync(string workspaceId, string fileName)
 		{
 			var results = await _client.GetWorkspaceSnippetsAsync(workspaceId).ConfigureAwait(false);
 			var firstResult = results.FirstOrDefault();
@@ -153,6 +153,65 @@ namespace Bitbucket.Cloud.Net.Tests
 			}
 
 			var result = await _client.GetWorkspaceSnippetFileAsync(workspaceId, firstResult.Id, fileName).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		[InlineData("luve")]
+		public async Task GetWorkspaceSnippetWatchersAsync(string workspaceId)
+		{
+			var results = await _client.GetWorkspaceSnippetsAsync(workspaceId).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetWatchersAsync(workspaceId, firstResult.Id).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		[InlineData("luve")]
+		public async Task GetWorkspaceSnippetDiffAsync(string workspaceId)
+		{
+			var snippets = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstSnippet = snippets.FirstOrDefault();
+			if (firstSnippet == null)
+			{
+				return;
+			}
+
+			var results = await _client.GetWorkspaceSnippetCommitsAsync(workspaceId, firstSnippet.Id).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			string result = await _client.GetWorkspaceSnippetDiffAsync(workspaceId, firstSnippet.Id, firstResult.Hash).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		[InlineData("luve")]
+		public async Task GetWorkspaceSnippetPatchAsync(string workspaceId)
+		{
+			var snippets = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstSnippet = snippets.FirstOrDefault();
+			if (firstSnippet == null)
+			{
+				return;
+			}
+
+			var results = await _client.GetWorkspaceSnippetCommitsAsync(workspaceId, firstSnippet.Id).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			string result = await _client.GetWorkspaceSnippetPatchAsync(workspaceId, firstSnippet.Id, firstResult.Hash).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

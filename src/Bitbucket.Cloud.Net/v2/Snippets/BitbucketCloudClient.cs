@@ -77,9 +77,9 @@ namespace Bitbucket.Cloud.Net
 			return await HandleResponseAsync<Snippet>(response).ConfigureAwait(false);
 		}
 
-		public async Task<object> GetWorkspaceSnippetAsync(string workspaceId, string snippetId, SnippetsAccept accept = SnippetsAccept.ApplicationJson, Func<MultipartContentSection, object> contentSectionHandler = null)
+		public async Task<object> GetWorkspaceSnippetAsync(string workspaceId, string snippetId, SnippetsContentTypes accept = SnippetsContentTypes.ApplicationJson, Func<MultipartContentSection, object> contentSectionHandler = null)
 		{
-			string acceptString = SnippetsAcceptConverter.ConvertToString(accept);
+			string acceptString = SnippetsContentTypesConverter.ConvertToString(accept);
 			var request = GetSnippetsUrl(workspaceId)
 				.AppendPathSegment(snippetId)
 				.AllowHttpStatus(HttpStatusCode.NotAcceptable)
@@ -87,12 +87,12 @@ namespace Bitbucket.Cloud.Net
 
 			return accept switch
 			{
-				SnippetsAccept.MultipartRelated => await request
+				SnippetsContentTypes.MultipartRelated => await request
 					.GetMultipartAsync()
 					.WithMultipartContentSectionsAsync(contentSectionHandler)
 					.ConfigureAwait(false),
 
-				SnippetsAccept.MultipartFormdata => await request
+				SnippetsContentTypes.MultipartFormdata => await request
 					.GetMultipartAsync()
 					.WithMultipartContentSectionsAsync(contentSectionHandler)
 					.ConfigureAwait(false),
@@ -240,6 +240,40 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 
 			return await HandleResponseAsync(response).ConfigureAwait(false);
+		}
+
+		public async Task<IEnumerable<User>> GetWorkspaceSnippetWatchersAsync(string workspaceId, string snippetId, int? maxPages = null)
+		{
+			var queryParamValues = new Dictionary<string, object>();
+
+			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
+					await GetSnippetsUrl(workspaceId)
+						.AppendPathSegment(snippetId)
+						.AppendPathSegment("/watchers")
+						.SetQueryParams(qpv)
+						.GetJsonAsync<PagedResults<User>>()
+						.ConfigureAwait(false))
+				.ConfigureAwait(false);
+		}
+
+		public async Task<string> GetWorkspaceSnippetDiffAsync(string workspaceId, string snippetId, string spec)
+		{
+			return await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment(spec)
+				.AppendPathSegment("/diff")
+				.GetStringAsync()
+				.ConfigureAwait(false);
+		}
+
+		public async Task<string> GetWorkspaceSnippetPatchAsync(string workspaceId, string snippetId, string spec)
+		{
+			return await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment(spec)
+				.AppendPathSegment("/patch")
+				.GetStringAsync()
+				.ConfigureAwait(false);
 		}
 	}
 }

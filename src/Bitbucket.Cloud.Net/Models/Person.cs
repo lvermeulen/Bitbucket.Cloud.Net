@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Bitbucket.Cloud.Net.Models
+﻿namespace Bitbucket.Cloud.Net.Models
 {
     public class Person : PersonBase
     {

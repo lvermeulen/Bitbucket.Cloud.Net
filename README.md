@@ -149,16 +149,16 @@ C# Client for Bitbucket Cloud
                     * [X] Comment Id
                 * [X] Commits
                     * [X] Revision
-                * [ ] Files
-                    * [ ] Path
-                * [ ] Watch
-                * [ ] Watchers
+                * [X] Files
+                    * [X] Path
+                * [X] Watch
+                * [X] Watchers
                 * [ ] Node Id
                     * [ ] Files
                         * [ ] Path
-                * [ ] Revision
-                    * [ ] Diff
-                    * [ ] Patch
+                * [X] Revision
+                    * [X] Diff
+                    * [X] Patch
     * [ ] Teams
         * [ ] User Name
             * [ ] Followers

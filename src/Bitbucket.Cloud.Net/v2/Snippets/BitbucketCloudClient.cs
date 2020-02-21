@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common.Converters;
 using Bitbucket.Cloud.Net.Common.Models;
@@ -206,6 +207,39 @@ namespace Bitbucket.Cloud.Net
 				.AppendPathSegment(fileName)
 				.GetStringAsync()
 				.ConfigureAwait(false);
+		}
+
+		public async Task<bool> StartWatchingWorkspaceSnippetAsync(string workspaceId, string snippetId)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/watch")
+				.PutJsonAsync(new StringContent(""))
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync(response).ConfigureAwait(false);
+		}
+
+		public async Task<bool> IsWatchingWorkspaceSnippetAsync(string workspaceId, string snippetId)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/watch")
+				.GetAsync()
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync(response).ConfigureAwait(false);
+		}
+
+		public async Task<bool> StopWatchingWorkspaceSnippetAsync(string workspaceId, string snippetId)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/watch")
+				.DeleteAsync()
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
 	}
 }

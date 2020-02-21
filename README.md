@@ -24,7 +24,8 @@ C# Client for Bitbucket Cloud
                 * [ ] Values
     * [ ] Hook Events
         * [ ] Subject Type
-    * [ ] Pull Requests
+    * [X] Pull Requests
+        * [X] Selected User
     * [X] Repositories
         * [X] Workspace
             * [X] Repo Slug

@@ -15,7 +15,7 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 			[PullRequestStates.Declined] = "DECLINED"
 		};
 
-		protected override string ConvertToString(PullRequestStates value)
+		public static string ToString(PullRequestStates value)
 		{
 			if (!s_map.TryGetValue(value, out string result))
 			{
@@ -23,6 +23,18 @@ namespace Bitbucket.Cloud.Net.Common.Converters
 			}
 
 			return result;
+		}
+
+		public static string ToString(PullRequestStates? value)
+		{
+			return value.HasValue
+				? ToString(value.Value)
+				: null;
+		}
+
+		protected override string ConvertToString(PullRequestStates value)
+		{
+			return ToString(value);
 		}
 
 		protected override PullRequestStates ConvertFromString(string s)

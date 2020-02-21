@@ -12,16 +12,13 @@
     <PackageLicenseUrl>https://github.com/lvermeulen/Bitbucket.Cloud.Net/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>bitbucket cloud org</PackageTags>
     <LangVersion>latest</LangVersion>
+    <Description>C# client for Bitbucket Cloud</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="2.4.2" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="v1\" />
   </ItemGroup>
 
 </Project>

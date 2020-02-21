@@ -173,5 +173,29 @@ namespace Bitbucket.Cloud.Net
 
 			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
+
+		public async Task<IEnumerable<SnippetCommit>> GetWorkspaceSnippetCommitsAsync(string workspaceId, string snippetId, int? maxPages = null)
+		{
+			var queryParamValues = new Dictionary<string, object>();
+
+			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
+					await GetSnippetsUrl(workspaceId)
+						.AppendPathSegment(snippetId)
+						.AppendPathSegment("/commits")
+						.SetQueryParams(qpv)
+						.GetJsonAsync<PagedResults<SnippetCommit>>()
+						.ConfigureAwait(false))
+				.ConfigureAwait(false);
+		}
+
+		public async Task<SnippetCommit> GetWorkspaceSnippetCommitAsync(string workspaceId, string snippetId, string commitHash)
+		{
+			return await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/commits")
+				.AppendPathSegment(commitHash)
+				.GetJsonAsync<SnippetCommit>()
+				.ConfigureAwait(false);
+		}
 	}
 }

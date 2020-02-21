@@ -81,5 +81,64 @@ namespace Bitbucket.Cloud.Net.Tests
 			var result = await _client.GetWorkspaceSnippetCommentsAsync(workspaceId, firstResult.Id).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
+
+		[Theory]
+		[InlineData("luve")]
+		public async Task GetWorkspaceSnippetCommentAsync(string workspaceId)
+		{
+			var snippets = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstSnippet = snippets.FirstOrDefault();
+			if (firstSnippet == null)
+			{
+				return;
+			}
+
+			var results = await _client.GetWorkspaceSnippetCommentsAsync(workspaceId, firstSnippet.Id).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetCommentAsync(workspaceId, firstSnippet.Id, firstResult.Id).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		[InlineData("luve")]
+		public async Task GetWorkspaceSnippetCommitsAsync(string workspaceId)
+		{
+			var results = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetCommitsAsync(workspaceId, firstResult.Id).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		[InlineData("luve")]
+		public async Task GetWorkspaceSnippetCommitAsync(string workspaceId)
+		{
+			var snippets = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstSnippet = snippets.FirstOrDefault();
+			if (firstSnippet == null)
+			{
+				return;
+			}
+
+			var results = await _client.GetWorkspaceSnippetCommitsAsync(workspaceId, firstSnippet.Id).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetCommitAsync(workspaceId, firstSnippet.Id, firstResult.Hash).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
 	}
 }

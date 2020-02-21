@@ -9,7 +9,5 @@
         public static string ConvertToString(bool? value) => value.HasValue
             ? ConvertToString(value.Value)
             : null;
-
-        //public static bool ConvertFromString(string value) => value.Equals("true", StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -18,12 +18,8 @@ C# Client for Bitbucket Cloud
     * [ ] Users
         * [ ] Invitations
 * [ ] 2.0
-    * [ ] Addons
-        * [ ] Linkers
-            * [ ] Linker Key
-                * [ ] Values
-    * [ ] Hook Events
-        * [ ] Subject Type
+    * [X] Hook Events
+        * [X] Subject Type
     * [X] Pull Requests
         * [X] Selected User
     * [X] Repositories

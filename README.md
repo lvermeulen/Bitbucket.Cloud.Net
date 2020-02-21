@@ -153,9 +153,9 @@ C# Client for Bitbucket Cloud
                     * [X] Path
                 * [X] Watch
                 * [X] Watchers
-                * [ ] Node Id
-                    * [ ] Files
-                        * [ ] Path
+                * [X] Node Id
+                    * [X] Files
+                        * [X] Path
                 * [X] Revision
                     * [X] Diff
                     * [X] Patch

@@ -256,6 +256,48 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
+		public async Task<Snippet> UpdateWorkspaceSnippetAsync(string workspaceId, string snippetId, string node, Snippet snippet)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment(node)
+				.PutJsonAsync(snippet)
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync<Snippet>(response).ConfigureAwait(false);
+		}
+
+		public async Task<object> GetWorkspaceSnippetAsync(string workspaceId, string snippetId, string node)
+		{
+			return await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment(node)
+				.GetJsonAsync<Snippet>()
+				.ConfigureAwait(false);
+		}
+
+		public async Task<bool> DeleteWorkspaceSnippetAsync(string workspaceId, string snippetId, string node)
+		{
+			var response = await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment(node)
+				.DeleteAsync()
+				.ConfigureAwait(false);
+
+			return await HandleResponseAsync(response).ConfigureAwait(false);
+		}
+
+		public async Task<string> GetWorkspaceSnippetFileAsync(string workspaceId, string snippetId, string node, string fileName)
+		{
+			return await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment(node)
+				.AppendPathSegment("/files")
+				.AppendPathSegment(fileName)
+				.GetStringAsync()
+				.ConfigureAwait(false);
+		}
+
 		public async Task<string> GetWorkspaceSnippetDiffAsync(string workspaceId, string snippetId, string spec)
 		{
 			return await GetSnippetsUrl(workspaceId)

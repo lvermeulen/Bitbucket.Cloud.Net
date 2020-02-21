@@ -214,5 +214,49 @@ namespace Bitbucket.Cloud.Net.Tests
 			string result = await _client.GetWorkspaceSnippetPatchAsync(workspaceId, firstSnippet.Id, firstResult.Hash).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
+
+		[Theory]
+		[InlineData("luve")]
+		public async Task GetWorkspaceSnippetWithHashAsync(string workspaceId)
+		{
+			var snippets = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstSnippet = snippets.FirstOrDefault();
+			if (firstSnippet == null)
+			{
+				return;
+			}
+
+			var results = await _client.GetWorkspaceSnippetCommitsAsync(workspaceId, firstSnippet.Id).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetAsync(workspaceId, firstSnippet.Id, firstResult.Hash).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
+
+		[Theory]
+		[InlineData("luve", "test_snippet_filename.txt")]
+		public async Task GetWorkspaceSnippetFileWithHashAsync(string workspaceId, string fileName)
+		{
+			var snippets = await _client.GetWorkspaceSnippetsAsync(workspaceId, Roles.Owner).ConfigureAwait(false);
+			var firstSnippet = snippets.FirstOrDefault();
+			if (firstSnippet == null)
+			{
+				return;
+			}
+
+			var results = await _client.GetWorkspaceSnippetCommitsAsync(workspaceId, firstSnippet.Id).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetFileAsync(workspaceId, firstSnippet.Id, firstResult.Hash, fileName).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
 	}
 }

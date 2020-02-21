@@ -188,13 +188,23 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<SnippetCommit> GetWorkspaceSnippetCommitAsync(string workspaceId, string snippetId, string commitHash)
+		public async Task<SnippetCommit> GetWorkspaceSnippetCommitAsync(string workspaceId, string snippetId, string commit)
 		{
 			return await GetSnippetsUrl(workspaceId)
 				.AppendPathSegment(snippetId)
 				.AppendPathSegment("/commits")
-				.AppendPathSegment(commitHash)
+				.AppendPathSegment(commit)
 				.GetJsonAsync<SnippetCommit>()
+				.ConfigureAwait(false);
+		}
+
+		public async Task<string> GetWorkspaceSnippetFileAsync(string workspaceId, string snippetId, string fileName)
+		{
+			return await GetSnippetsUrl(workspaceId)
+				.AppendPathSegment(snippetId)
+				.AppendPathSegment("/files")
+				.AppendPathSegment(fileName)
+				.GetStringAsync()
 				.ConfigureAwait(false);
 		}
 	}

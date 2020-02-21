@@ -140,5 +140,20 @@ namespace Bitbucket.Cloud.Net.Tests
 			var result = await _client.GetWorkspaceSnippetCommitAsync(workspaceId, firstSnippet.Id, firstResult.Hash).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
+
+		[Theory]
+		[InlineData("luve", "test_snippet_filename.txt")]
+		public async Task GetSnippetFileAsync(string workspaceId, string fileName)
+		{
+			var results = await _client.GetWorkspaceSnippetsAsync(workspaceId).ConfigureAwait(false);
+			var firstResult = results.FirstOrDefault();
+			if (firstResult == null)
+			{
+				return;
+			}
+
+			var result = await _client.GetWorkspaceSnippetFileAsync(workspaceId, firstResult.Id, fileName).ConfigureAwait(false);
+			Assert.NotNull(result);
+		}
 	}
 }

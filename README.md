@@ -11,12 +11,12 @@ C# Client for Bitbucket Cloud
     * [ ] OAuth2
     * [ ] App Passwords
     * [X] Basic
-* [ ] 1.0
-    * [ ] Group Privileges
-    * [ ] Groups
-    * [ ] Invitations
-    * [ ] Users
-        * [ ] Invitations
+* [X] 1.0
+    * [X] Group Privileges
+    * [X] Groups
+    * [X] Invitations
+    * [X] Users
+        * [X] Invitations
 * [ ] 2.0
     * [X] Hook Events
         * [X] Subject Type

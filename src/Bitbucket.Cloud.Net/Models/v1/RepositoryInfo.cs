@@ -1,8 +1,8 @@
 ﻿namespace Bitbucket.Cloud.Net.Models.v1
 {
-	public class RepositoryInfo
+	public class RepositoryInfo<TOwnerType>
 	{
-		public Person Owner { get; set; }
+		public TOwnerType Owner { get; set; }
 		public string Name { get; set; }
 		public string Slug { get; set; }
 	}

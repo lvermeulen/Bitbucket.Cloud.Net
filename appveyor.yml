@@ -4,7 +4,9 @@ branches:
   - master
 pull_requests:
   do_not_increment_build_number: true
-image: Visual Studio 2017
+image: Visual Studio 2019
+environment:
+  APPVEYOR_CONSOLE_DISABLE_PTY: true
 build_script:
 - ps: .\build\build.ps1 $env:APPVEYOR_BUILD_VERSION $env:APPVEYOR_REPO_TAG_NAME
 #before_test:

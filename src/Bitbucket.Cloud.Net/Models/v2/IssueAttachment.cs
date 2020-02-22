@@ -1,0 +1,9 @@
+﻿namespace Bitbucket.Cloud.Net.Models.v2
+{
+	public class IssueAttachment
+	{
+		public string Type { get; set; }
+		public OwnerLinks Links { get; set; }
+		public string Name { get; set; }
+	}
+}

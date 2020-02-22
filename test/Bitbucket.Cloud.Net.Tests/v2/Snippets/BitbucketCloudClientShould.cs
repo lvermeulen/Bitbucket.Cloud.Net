@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common.MultiPart;
-using Bitbucket.Cloud.Net.Models;
+using Bitbucket.Cloud.Net.Models.v2;
 using Xunit;
 
 // ReSharper disable once CheckNamespace

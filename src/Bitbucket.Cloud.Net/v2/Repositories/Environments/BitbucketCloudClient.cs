@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Bitbucket.Cloud.Net.Common.Models;
 using Flurl.Http;
-using Environment = Bitbucket.Cloud.Net.Models.Environment;
+using Environment = Bitbucket.Cloud.Net.Models.v2.Environment;
 
 // ReSharper disable once CheckNamespace
 namespace Bitbucket.Cloud.Net

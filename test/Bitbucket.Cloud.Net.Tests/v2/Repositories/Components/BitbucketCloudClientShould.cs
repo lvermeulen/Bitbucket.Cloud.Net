@@ -19,7 +19,7 @@ namespace Bitbucket.Cloud.Net.Tests
 		[InlineData("luve", "test")]
 		public async Task GetRepositoryComponentAsync(string workspaceId, string repositorySlug)
 		{
-			var results = await _client.GetRepositoryComponentsAsync(workspaceId, repositorySlug);
+			var results = await _client.GetRepositoryComponentsAsync(workspaceId, repositorySlug).ConfigureAwait(false);
 			var firstResult = results.FirstOrDefault();
 			if (firstResult == null)
 			{

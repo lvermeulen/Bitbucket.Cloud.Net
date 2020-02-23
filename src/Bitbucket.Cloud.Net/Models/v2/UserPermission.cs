@@ -7,6 +7,7 @@ namespace Bitbucket.Cloud.Net.Models.v2
 	{
 		public string Type { get; set; }
 		public User User { get; set; }
+
 		[JsonConverter(typeof(PermissionsConverter))]
 		public Permissions Permission { get; set; }
 	}

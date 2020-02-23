@@ -12,13 +12,18 @@ namespace Bitbucket.Cloud.Net.Models.v2
 		public string Url { get; set; }
 		public Links Links { get; set; }
 		public string RefName { get; set; }
+
 		[JsonConverter(typeof(BuildResultStatesConverter))]
 		public BuildResultStates State { get; set; }
+
 		[JsonProperty("created_on")]
 		public DateTime? CreatedOn { get; set; }
+
 		public CommitInfo Commit { get; set; }
+
 		[JsonProperty("updated_on")]
 		public DateTime? UpdatedOn { get; set; }
+
 		public string Type { get; set; }
 		public string Name { get; set; }
 	}

@@ -14,7 +14,7 @@ namespace Bitbucket.Cloud.Net
 				.PutStringAsync(propertyValue)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync(response);
+			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
 
 		public async Task<string> GetRepositoryApplicationPropertyValueAsync(string workspaceId, string repositorySlug, string appKey, string propertyName)
@@ -30,7 +30,7 @@ namespace Bitbucket.Cloud.Net
 				.DeleteAsync()
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync(response);
+			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
 	}
 }

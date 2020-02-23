@@ -8,7 +8,9 @@ namespace Bitbucket.Cloud.Net.Models.v2
 	{
 		[JsonConverter(typeof(ParticipantRoleConverter))]
 		public ParticipantRole Role { get; set; }
+
 		public bool Approved { get; set; }
+
 		[JsonProperty("participated_on")]
 		public DateTime? ParticipatedOn { get; set; }
 	}

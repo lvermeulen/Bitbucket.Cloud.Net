@@ -26,7 +26,7 @@ namespace Bitbucket.Cloud.Net.Tests
 				return;
 			}
 
-			var result = await _client.GetRepositoryBranchRestrictionAsync(workspaceId, repositorySlug, firstResult.Id.ToString());
+			var result = await _client.GetRepositoryBranchRestrictionAsync(workspaceId, repositorySlug, firstResult.Id.ToString()).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

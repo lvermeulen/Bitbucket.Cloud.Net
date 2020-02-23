@@ -18,7 +18,7 @@ namespace Bitbucket.Cloud.Net.Tests
 		[InlineData("luve", "test")]
 		public async Task GetRepositoryBranchesAsync(string workspaceId, string repositorySlug)
 		{
-			var result = await _client.GetRepositoryBranchesAsync(workspaceId, repositorySlug);
+			var result = await _client.GetRepositoryBranchesAsync(workspaceId, repositorySlug).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 
@@ -26,7 +26,7 @@ namespace Bitbucket.Cloud.Net.Tests
 		[InlineData("luve", "test")]
 		public async Task GetRepositoryTagsAsync(string workspaceId, string repositorySlug)
 		{
-			var result = await _client.GetRepositoryTagsAsync(workspaceId, repositorySlug);
+			var result = await _client.GetRepositoryTagsAsync(workspaceId, repositorySlug).ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

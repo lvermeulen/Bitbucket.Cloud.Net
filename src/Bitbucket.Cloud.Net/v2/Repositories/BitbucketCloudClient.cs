@@ -49,7 +49,6 @@ namespace Bitbucket.Cloud.Net
 						.GetJsonAsync<PagedResults<Repository>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
-
 		}
 
 		public async Task<Repository> CreateWorkspaceRepositoryAsync(string workspaceId, string repositorySlug, Repository repository)

@@ -1,6 +1,6 @@
 ﻿using Bitbucket.Cloud.Net.Common.Converters;
-using Bitbucket.Cloud.Net.Models.v2;
 using Newtonsoft.Json;
+using Permissions = Bitbucket.Cloud.Net.Models.v2.Permissions;
 
 namespace Bitbucket.Cloud.Net.Models.v1
 {
@@ -12,6 +12,6 @@ namespace Bitbucket.Cloud.Net.Models.v1
 		public Permissions Privilege { get; set; }
 
 		public Group Group { get; set; }
-		public RepositoryInfo Repository { get; set; }
+		public RepositoryInfo<string> Repository { get; set; }
 	}
 }

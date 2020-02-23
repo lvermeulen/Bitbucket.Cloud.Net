@@ -19,7 +19,7 @@ namespace Bitbucket.Cloud.Net.Tests
 		[InlineData("luve", "test")]
 		public async Task GetRepositoryDeployKeyAsync(string workspaceId, string repositorySlug)
 		{
-			var results = await _client.GetRepositoryDeployKeysAsync(workspaceId, repositorySlug);
+			var results = await _client.GetRepositoryDeployKeysAsync(workspaceId, repositorySlug).ConfigureAwait(false);
 			var firstResult = results.FirstOrDefault();
 			if (firstResult == null)
 			{

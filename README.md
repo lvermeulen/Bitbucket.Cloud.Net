@@ -9,9 +9,9 @@ C# Client for Bitbucket Cloud
 If you're looking for Bitbucket Server API, try [this repository](https://github.com/lvermeulen/Bitbucket.Net).
 
 ## Features
-* [ ] Authentication
-    * [ ] OAuth2
-    * [ ] App Passwords
+* [X] Authentication
+    * [X] OAuth2
+    * [X] App Passwords
     * [X] Basic
 * [X] 1.0
     * [X] Group Privileges

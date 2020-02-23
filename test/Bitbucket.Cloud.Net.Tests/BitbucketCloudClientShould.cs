@@ -1,5 +1,6 @@
 using System.IO;
 using System.Threading.Tasks;
+using Bitbucket.Cloud.Net.Common.Authentication;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
@@ -17,13 +18,13 @@ namespace Bitbucket.Cloud.Net.Tests
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            _client = new BitbucketCloudClient(_configuration["url"], _configuration["username"], _configuration["password"]);
+            _client = new BitbucketCloudClient(_configuration["url"], new BasicAuthentication(_configuration["username"], _configuration["password"]));
         }
 
-        [Fact(Skip = "Not working yet")]
-        public async Task AuthenticateWithOAuth()
+        [Fact]
+        public async Task AuthenticateWithAppPassword()
         {
-            var client = new BitbucketCloudClient(_configuration["url"], "2KytPTfjwjkR5khuyp", "NqtjTkPEDTWMWTM4Ax68MCFd87F4JQDk", "oauth");
+            var client = new BitbucketCloudClient(_configuration["url"], new AppPasswordAuthentication(_configuration["username"], _configuration["appPassword"]));
             var results = await client.GetRepositoriesAsync(1).ConfigureAwait(false);
             Assert.NotEmpty(results);
         }

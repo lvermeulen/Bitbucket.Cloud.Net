@@ -17,7 +17,7 @@ C# Client for Bitbucket Cloud
     * [X] Invitations
     * [X] Users
         * [X] Invitations
-* [ ] 2.0
+* [X] 2.0
     * [X] Hook Events
         * [X] Subject Type
     * [X] Pull Requests
@@ -156,23 +156,24 @@ C# Client for Bitbucket Cloud
                 * [X] Revision
                     * [X] Diff
                     * [X] Patch
-    * [ ] Teams
-        * [ ] User Name
-            * [ ] Followers
-            * [ ] Following
-            * [ ] Hooks
-                * [ ] Uid
-            * [ ] Members
-            * [ ] Permissions
-                * [ ] Repositories
-            * [ ] Pipelines Config
-                * [ ] Variables
-                    * [ ] Variable Uuid
-            * [ ] Projects
-                * [ ] Project Key
-            * [ ] Repositories
-            * [ ] Search
-                * [ ] Code
+    * [X] Teams
+        * [X] User Name
+            * [X] Followers
+            * [X] Following
+            * [X] Hooks
+                * [X] Uid
+            * ~~[X] Members~~ (deprecated)
+            * [X] Permissions
+                * [X] Repositories
+                    * [X] Repo Slug
+            * [X] Pipelines Config
+                * [X] Variables
+                    * [X] Variable Uuid
+            * [X] Projects
+                * [X] Project Key
+            * [X] Repositories
+            * [X] Search
+                * [X] Code
     * [X] User
         * [X] Emails
             * [X] Email

@@ -22,11 +22,14 @@ namespace Bitbucket.Cloud.Net.Models.v2
 		public Link History { get; set; }
 		public Link Hooks { get; set; }
 		public Link Issues { get; set; }
+		public Link Members { get; set; }
 		public Link Merge { get; set; }
 		public Link Meta { get; set; }
 		public Link Patch { get; set; }
+		public Link Projects { get; set; }
 		public Link PullRequests { get; set; }
 		public Link Repositories { get; set; }
+		public Link Snippets { get; set; }
 		public Link Source { get; set; }
 		public Link Statuses { get; set; }
 		public Link Steps { get; set; }

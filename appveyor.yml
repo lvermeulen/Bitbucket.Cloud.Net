@@ -7,6 +7,8 @@ pull_requests:
 image: Visual Studio 2019
 environment:
   APPVEYOR_CONSOLE_DISABLE_PTY: true
+before_build:
+- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 build_script:
 - ps: .\build\build.ps1 $env:APPVEYOR_BUILD_VERSION $env:APPVEYOR_REPO_TAG_NAME
 #before_test:

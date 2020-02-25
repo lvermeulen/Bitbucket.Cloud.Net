@@ -16,9 +16,6 @@ foreach ($src in ls $PSScriptRoot\..\src/*) {
     else {
         $version = $BuildVersionNumber
     }
-
-    Write-Host "TagVersionNumber: $TagVersionNumber"
-    Write-Host "BuildVersionNumber: $BuildVersionNumber"
     
     & dotnet build -c Release
     & dotnet pack -c Release --include-symbols -o ..\..\artifacts --no-build /p:PackageVersion=$version

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net46;netstandard1.6</TargetFrameworks>
-    <PackageVersion>1.0.*</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <Copyright>Copyright 2020 by Luk Vermeulen. All rights reserved.</Copyright>
     <Authors>Luk Vermeulen</Authors>
     <Company>Luk Vermeulen</Company>

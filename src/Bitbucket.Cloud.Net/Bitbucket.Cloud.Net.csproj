@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>net46;netstandard1.6</TargetFrameworks>
-    <PackageVersion>1.0.0</PackageVersion>
     <Copyright>Copyright 2020 by Luk Vermeulen. All rights reserved.</Copyright>
     <Authors>Luk Vermeulen</Authors>
     <Company>Luk Vermeulen</Company>
@@ -14,6 +13,7 @@
     <PackageTags>bitbucket cloud org</PackageTags>
     <LangVersion>latest</LangVersion>
     <Description>C# client for Bitbucket Cloud</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

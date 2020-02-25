@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
-    <PackageVersion>1.0.0</PackageVersion>
 
     <IsPackable>false</IsPackable>
 

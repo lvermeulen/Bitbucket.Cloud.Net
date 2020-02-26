@@ -10,13 +10,13 @@ foreach ($src in ls $PSScriptRoot\..\src/*) {
 
 	Write-Output "build: Building & packaging project in $src"
 
-    if ($TagVersionNumber -ne $null) {
+    if ($TagVersionNumber) {
         $version = $TagVersionNumber
     }
     else {
         $version = $BuildVersionNumber
     }
-
+    
     & dotnet build -c Release
     & dotnet pack -c Release --include-symbols -o ..\..\artifacts --no-build /p:PackageVersion=$version
     if($LASTEXITCODE -ne 0) { exit 1 }    

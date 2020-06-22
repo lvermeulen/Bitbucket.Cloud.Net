@@ -57,11 +57,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<PipelineSchedule>> GetRepositoryPipelinesConfigSchedulesAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPipelinesConfigSchedulesUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPipelinesConfigSchedulesUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<PipelineSchedule>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -95,11 +92,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<PipelineScheduleExecution>> GetRepositoryPipelinesConfigScheduleExecutionsAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPipelinesConfigSchedulesUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPipelinesConfigSchedulesUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<PipelineScheduleExecution>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -141,11 +135,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<PipelineKnownHost>> GetRepositoryPipelinesConfigKnownHostsAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPipelinesConfigSshKnownHostsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPipelinesConfigSshKnownHostsUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<PipelineKnownHost>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -187,11 +178,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Variable>> GetRepositoryPipelinesConfigVariablesAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPipelinesConfigVariablesUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPipelinesConfigVariablesUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Variable>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

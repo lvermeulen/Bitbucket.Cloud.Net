@@ -31,9 +31,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(pattern)] = pattern
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetBranchRestrictionsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetBranchRestrictionsUrl(workspaceId, repositorySlug), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<BranchRestriction>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

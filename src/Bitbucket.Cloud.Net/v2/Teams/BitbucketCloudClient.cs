@@ -21,9 +21,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(role)] = PermissionsConverter.ToString(role)
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl()
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetTeamsUrl(), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Team>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -38,12 +38,10 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<User>> GetTeamFollowersAsync(string teamName, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl(teamName)
-						.AppendPathSegment("/followers")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetTeamsUrl(teamName)
+                        .AppendPathSegment("/followers"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<User>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -51,12 +49,10 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<User>> GetTeamFollowingAsync(string teamName, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl(teamName)
-						.AppendPathSegment("/following")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetTeamsUrl(teamName)
+                        .AppendPathSegment("/following"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<User>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -74,12 +70,10 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Webhook>> GetTeamWebhooksAsync(string userName, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl()
-						.AppendPathSegment($"/{userName}/hooks")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetTeamsUrl()
+                        .AppendPathSegment($"/{userName}/hooks"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Webhook>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -121,10 +115,11 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl(userName)
-						.AppendPathSegment("/permissions")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                         GetTeamsUrl(userName)
+                        .AppendPathSegment("/permissions"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<TeamPermission>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -138,11 +133,12 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl(userName)
-						.AppendPathSegment("/permissions")
-						.AppendPathSegment("/repositories")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetTeamsUrl(userName)
+                        .AppendPathSegment("/permissions")
+                        .AppendPathSegment("/repositories"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<TeamRepositoryPermission>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -156,12 +152,13 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl(userName)
-						.AppendPathSegment("/permissions")
-						.AppendPathSegment("/repositories")
-						.AppendPathSegment(repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages,
+                         GetTeamsUrl(userName)
+                        .AppendPathSegment("/permissions")
+                        .AppendPathSegment("/repositories")
+                        .AppendPathSegment(repositorySlug), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<TeamRepositoryPermission>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -179,12 +176,10 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Variable>> GetTeamVariablesAsync(string userName, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl()
-						.AppendPathSegment($"/{userName}/pipelines_config/variables/")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages,
+                         GetTeamsUrl()
+                        .AppendPathSegment($"/{userName}/pipelines_config/variables/"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Variable>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -230,12 +225,10 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Project>> GetTeamProjectsAsync(string teamName, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl(teamName)
-						.AppendPathSegment("/projects")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                         GetTeamsUrl(teamName)
+                        .AppendPathSegment("/projects"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Project>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -271,30 +264,27 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Repository>> GetTeamRepositoriesAsync(string userName, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl()
-						.AppendPathSegment($"/{userName}/repositories")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages,
+                         GetTeamsUrl()
+                        .AppendPathSegment($"/{userName}/repositories"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Repository>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
 		}
 
-		public async Task<IEnumerable<SearchResult>> SearchTeamCodeAsync(string teamName, string searchQuery, int? maxPages = null, int? page = null, int? pageLength = null)
+		public async Task<IEnumerable<SearchResult>> SearchTeamCodeAsync(string teamName, string searchQuery, int? maxPages = null)
 		{
 			var queryParamValues = new Dictionary<string, object>
 			{
-				["search_query"] = searchQuery,
-				["page"] = page,
-				["pagelen"] = pageLength
+				["search_query"] = searchQuery
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetTeamsUrl()
-						.AppendPathSegment($"/{teamName}/search/code")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages,
+                         GetTeamsUrl()
+                        .AppendPathSegment($"/{teamName}/search/code"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<SearchResult>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

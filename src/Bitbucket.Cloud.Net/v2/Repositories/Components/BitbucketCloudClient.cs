@@ -13,11 +13,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Component>> GetRepositoryComponentsAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetComponentsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetComponentsUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Component>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

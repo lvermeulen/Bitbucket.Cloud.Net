@@ -35,11 +35,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<PullRequest>> GetRepositoryPullRequestsAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPullRequestsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPullRequestsUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<PullRequest>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -47,11 +44,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<PullRequestActivity>> GetRepositoryPullRequestActivityAsync(string workspaceId, string repositorySlug, string pullRequestId, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/activity")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/activity"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<PullRequestActivity>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -102,11 +96,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<PullRequestComment>> GetRepositoryPullRequestCommentsAsync(string workspaceId, string repositorySlug, string pullRequestId, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/comments")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/comments"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<PullRequestComment>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -139,11 +130,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Commit>> GetRepositoryPullRequestCommitsAsync(string workspaceId, string repositorySlug, string pullRequestId, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/commits")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/commits"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Commit>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -167,11 +155,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<DiffStat>> GetRepositoryPullRequestDiffStatAsync(string workspaceId, string repositorySlug, string pullRequestId, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/diffstat")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/diffstat"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<DiffStat>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -208,9 +193,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/statuses")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPullRequestsUrl(workspaceId, repositorySlug, $"/{pullRequestId}/statuses"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<BuildResult>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

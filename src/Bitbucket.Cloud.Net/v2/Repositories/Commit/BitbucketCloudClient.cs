@@ -40,17 +40,10 @@ namespace Bitbucket.Cloud.Net
 			return await HandleResponseAsync(response).ConfigureAwait(false);
 		}
 
-		public async Task<IEnumerable<PullRequestInfo>> GetRepositoryCommitPullRequestsAsync(string workspaceId, string repositorySlug, string commit, int? maxPages = null, int? page = null, int? pageLength = null)
+		public async Task<IEnumerable<PullRequestInfo>> GetRepositoryCommitPullRequestsAsync(string workspaceId, string repositorySlug, string commit, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>
-			{
-				[nameof(page)] = page,
-				["pagelen"] = pageLength
-			};
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetCommitUrl(workspaceId, repositorySlug, commit, "/pullrequests")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetCommitUrl(workspaceId, repositorySlug, commit, "/pullrequests"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<PullRequestInfo>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -98,9 +91,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetCommitUrl(workspaceId, repositorySlug, commit, "/comments")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetCommitUrl(workspaceId, repositorySlug, commit, "/comments"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Comment>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -121,9 +114,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetCommitUrl(workspaceId, repositorySlug, commit, "/statuses")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetCommitUrl(workspaceId, repositorySlug, commit, "/statuses"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<BuildResult>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

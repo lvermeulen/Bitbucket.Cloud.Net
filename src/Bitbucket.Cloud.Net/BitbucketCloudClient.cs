@@ -85,25 +85,21 @@ namespace Bitbucket.Cloud.Net
 			return await ReadResponseContentAsync(responseMessage).ConfigureAwait(false);
 		}
 
-		private async Task<IEnumerable<T>> GetPagedResultsAsync<T>(int? maxPages, IDictionary<string, object> queryParamValues, Func<IDictionary<string, object>, Task<PagedResults<T>>> selector)
+		private async Task<IEnumerable<T>> GetPagedResultsAsync<T>(int? maxPages, IFlurlRequest request, Func<IFlurlRequest, Task<PagedResults<T>>> selector)
 		{
 			var results = new List<T>();
-			bool isLastPage = false;
 			int numPages = 0;
-
-			while (!isLastPage && (maxPages == null || numPages < maxPages))
+			while (maxPages == null || numPages < maxPages)
 			{
-				var selectorResults = await selector(queryParamValues).ConfigureAwait(false);
-				selectorResults.Page = Math.Max(0, 1);
+				var selectorResults = await selector(request).ConfigureAwait(false);
 				results.AddRange(selectorResults.Values);
 
-				isLastPage = selectorResults.Next == null;
-				if (!isLastPage)
+				if (string.IsNullOrWhiteSpace(selectorResults.Next))
 				{
-					queryParamValues["page"] = selectorResults.Page + 1;
+                  break;
 				}
-
-				numPages++;
+                request.Url = new Url(selectorResults.Next);
+                numPages++;
 			}
 
 			return results;

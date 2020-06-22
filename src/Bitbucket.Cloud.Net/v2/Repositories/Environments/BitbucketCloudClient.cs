@@ -28,11 +28,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Environment>> GetRepositoryEnvironmentsAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetEnvironmentsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetEnvironmentsUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Environment>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

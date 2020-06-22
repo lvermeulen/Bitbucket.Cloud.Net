@@ -26,9 +26,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetRefsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetRefsUrl(workspaceId, repositorySlug), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Ref>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -60,9 +60,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetRefsBranchesUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetRefsBranchesUrl(workspaceId, repositorySlug), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Ref>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -94,9 +94,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetRefsTagsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetRefsTagsUrl(workspaceId, repositorySlug), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Ref>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

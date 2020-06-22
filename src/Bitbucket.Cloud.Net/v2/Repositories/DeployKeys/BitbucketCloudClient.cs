@@ -31,11 +31,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<DeployKey>> GetRepositoryDeployKeysAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetDeployKeysUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetDeployKeysUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<DeployKey>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

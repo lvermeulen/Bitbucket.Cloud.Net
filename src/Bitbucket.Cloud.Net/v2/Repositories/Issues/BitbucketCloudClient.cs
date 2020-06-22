@@ -29,11 +29,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Issue>> GetRepositoryIssuesAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetIssuesUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetIssuesUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Issue>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -120,12 +117,10 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<IssueAttachment>> GetRepositoryIssueAttachmentsAsync(string workspaceId, string repositorySlug, string issueId, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetIssuesUrl(workspaceId, repositorySlug, issueId)
-						.AppendPathSegment("/attachments")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetIssuesUrl(workspaceId, repositorySlug, issueId)
+                        .AppendPathSegment("/attachments"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<IssueAttachment>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -167,10 +162,11 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetIssuesUrl(workspaceId, repositorySlug, issueId)
-						.AppendPathSegment("/changes")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                         GetIssuesUrl(workspaceId, repositorySlug, issueId)
+                        .AppendPathSegment("/changes"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<IssueChange>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -202,10 +198,11 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetIssuesUrl(workspaceId, repositorySlug, issueId)
-						.AppendPathSegment("/comments")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetIssuesUrl(workspaceId, repositorySlug, issueId)
+                        .AppendPathSegment("/comments"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<IssueComment>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

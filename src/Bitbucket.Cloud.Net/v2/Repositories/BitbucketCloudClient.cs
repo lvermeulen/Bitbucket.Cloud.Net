@@ -26,9 +26,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetRepositoriesUrl()
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetRepositoriesUrl(), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Repository>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -43,9 +43,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetRepositoriesUrl($"/{workspaceId}")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetRepositoriesUrl($"/{workspaceId}"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Repository>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

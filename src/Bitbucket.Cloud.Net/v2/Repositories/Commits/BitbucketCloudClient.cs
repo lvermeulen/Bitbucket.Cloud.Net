@@ -24,9 +24,9 @@ namespace Bitbucket.Cloud.Net
 				["exclude"] = excludes
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetCommitsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetCommitsUrl(workspaceId, repositorySlug), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Commit>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -42,9 +42,9 @@ namespace Bitbucket.Cloud.Net
 				["exclude"] = excludes
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetCommitsUrl(workspaceId, repositorySlug, reference)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetCommitsUrl(workspaceId, repositorySlug, reference), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Commit>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

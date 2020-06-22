@@ -24,11 +24,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Pipeline>> GetRepositoryPipelinesAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPipelinesUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPipelinesUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Pipeline>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -52,11 +49,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<PipelineStep>> GetRepositoryPipelineStepsAsync(string workspaceId, string repositorySlug, Guid pipelineUuid, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetPipelineStepsUrl(workspaceId, repositorySlug, pipelineUuid)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetPipelineStepsUrl(workspaceId, repositorySlug, pipelineUuid), async req =>
+					await req
 						.GetJsonAsync<PagedResults<PipelineStep>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

@@ -19,9 +19,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetFileHistoryUrl(workspaceId, repositorySlug, node, path)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetFileHistoryUrl(workspaceId, repositorySlug, node, path), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<FileHistoryItem>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

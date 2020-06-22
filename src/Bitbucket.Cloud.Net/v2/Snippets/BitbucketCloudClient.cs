@@ -35,9 +35,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(role)] = RolesConverter.ConvertToString(role)
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetSnippetsUrl()
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetSnippetsUrl(), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Snippet>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -59,9 +59,9 @@ namespace Bitbucket.Cloud.Net
 				[nameof(role)] = RolesConverter.ConvertToString(role)
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetSnippetsUrl(workspaceId)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetSnippetsUrl(workspaceId), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<Snippet>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -131,11 +131,12 @@ namespace Bitbucket.Cloud.Net
 				[nameof(sort)] = sort
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetSnippetsUrl(workspaceId)
-						.AppendPathSegment(snippetId)
-						.AppendPathSegment("/comments")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetSnippetsUrl(workspaceId)
+                        .AppendPathSegment(snippetId)
+                        .AppendPathSegment("/comments"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<SnippetComment>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -179,11 +180,12 @@ namespace Bitbucket.Cloud.Net
 		{
 			var queryParamValues = new Dictionary<string, object>();
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetSnippetsUrl(workspaceId)
-						.AppendPathSegment(snippetId)
-						.AppendPathSegment("/commits")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetSnippetsUrl(workspaceId)
+                        .AppendPathSegment(snippetId)
+                        .AppendPathSegment("/commits"), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<SnippetCommit>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);
@@ -244,13 +246,11 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<User>> GetWorkspaceSnippetWatchersAsync(string workspaceId, string snippetId, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetSnippetsUrl(workspaceId)
-						.AppendPathSegment(snippetId)
-						.AppendPathSegment("/watchers")
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, 
+                        GetSnippetsUrl(workspaceId)
+                        .AppendPathSegment(snippetId)
+                        .AppendPathSegment("/watchers"), async req =>
+					await req
 						.GetJsonAsync<PagedResults<User>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

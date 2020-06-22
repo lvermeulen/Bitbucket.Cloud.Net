@@ -18,9 +18,9 @@ namespace Bitbucket.Cloud.Net
 				["ignore_whitespace"] = ignoreWhiteSpace
 			};
 
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetDiffStatUrl(workspaceId, repositorySlug, spec)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetDiffStatUrl(workspaceId, repositorySlug, spec), async req =>
+					await req
+						.SetQueryParams(queryParamValues)
 						.GetJsonAsync<PagedResults<DiffStat>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

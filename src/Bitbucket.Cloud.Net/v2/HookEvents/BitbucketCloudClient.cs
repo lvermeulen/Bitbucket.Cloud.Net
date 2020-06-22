@@ -23,12 +23,9 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<HookEvent>> GetHookEventsAsync(HookEventSubjectTypes hookEventSubjectType, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
 			var subjectType = HookEventSubjectTypeConverter.ConvertToString(hookEventSubjectType);
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetHookEventsUrl(subjectType)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetHookEventsUrl(subjectType), async req =>
+					await req
 						.GetJsonAsync<PagedResults<HookEvent>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

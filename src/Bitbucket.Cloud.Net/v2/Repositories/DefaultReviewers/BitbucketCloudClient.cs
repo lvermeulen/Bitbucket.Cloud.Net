@@ -17,11 +17,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<User>> GetRepositoryDefaultReviewersAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetDefaultReviewersUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetDefaultReviewersUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<User>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

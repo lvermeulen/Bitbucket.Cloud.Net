@@ -26,11 +26,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Download>> GetRepositoryDownloadsAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetDownloadsUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetDownloadsUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Download>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

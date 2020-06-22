@@ -20,12 +20,10 @@ namespace Bitbucket.Cloud.Net
 
         public async Task<IEnumerable<UserEmail>> GetUserEmailsAsync(int? maxPages = null)
         {
-            var queryParamValues = new Dictionary<string, object>();
-
-            return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-                    await GetUserUrl()
-                        .AppendPathSegment("/emails")
-                        .SetQueryParams(qpv)
+            return await GetPagedResultsAsync(maxPages, 
+                         GetUserUrl()
+                        .AppendPathSegment("/emails"), async req =>
+                    await req
                         .GetJsonAsync<PagedResults<UserEmail>>()
                         .ConfigureAwait(false))
                 .ConfigureAwait(false);
@@ -41,12 +39,10 @@ namespace Bitbucket.Cloud.Net
 
         public async Task<IEnumerable<UserPermissionRepository>> GetUserPermissionsForRepositoriesAsync(int? maxPages = null)
         {
-            var queryParamValues = new Dictionary<string, object>();
-
-            return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-                    await GetUserUrl()
-                        .AppendPathSegment("/permissions/repositories")
-                        .SetQueryParams(qpv)
+            return await GetPagedResultsAsync(maxPages,
+                         GetUserUrl()
+                        .AppendPathSegment("/permissions/repositories"), async req =>
+                    await req
                         .GetJsonAsync<PagedResults<UserPermissionRepository>>()
                         .ConfigureAwait(false))
                 .ConfigureAwait(false);
@@ -54,12 +50,10 @@ namespace Bitbucket.Cloud.Net
 
         public async Task<IEnumerable<UserPermissionTeam>> GetUserPermissionsForTeamsAsync(int? maxPages = null)
         {
-            var queryParamValues = new Dictionary<string, object>();
-
-            return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-                    await GetUserUrl()
-                        .AppendPathSegment("/permissions/teams")
-                        .SetQueryParams(qpv)
+            return await GetPagedResultsAsync(maxPages,
+                         GetUserUrl()
+                        .AppendPathSegment("/permissions/teams"), async req =>
+                    await req
                         .GetJsonAsync<PagedResults<UserPermissionTeam>>()
                         .ConfigureAwait(false))
                 .ConfigureAwait(false);

@@ -16,11 +16,8 @@ namespace Bitbucket.Cloud.Net
 
 		public async Task<IEnumerable<Milestone>> GetRepositoryMilestonesAsync(string workspaceId, string repositorySlug, int? maxPages = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
-
-			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
-					await GetMilestonesUrl(workspaceId, repositorySlug)
-						.SetQueryParams(qpv)
+			return await GetPagedResultsAsync(maxPages, GetMilestonesUrl(workspaceId, repositorySlug), async req =>
+					await req
 						.GetJsonAsync<PagedResults<Milestone>>()
 						.ConfigureAwait(false))
 				.ConfigureAwait(false);

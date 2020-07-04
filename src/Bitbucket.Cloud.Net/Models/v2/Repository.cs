@@ -33,7 +33,7 @@ namespace Bitbucket.Cloud.Net.Models.v2
         [JsonProperty("updated_on")]
         public DateTime? UpdatedOn { get; set; }
 
-        public int Size { get; set; }
+        public long Size { get; set; }
         public string Slug { get; set; }
 
         [JsonProperty("is_private")]

@@ -34,7 +34,7 @@ namespace Bitbucket.Cloud.Net.Models.v1
 		[JsonProperty("email_writers")]
 		public bool EmailWriters { get; set; }
 
-		public int Size { get; set; }
+		public long Size { get; set; }
 
 		[JsonProperty("has_issues")]
 		public bool HasIssues { get; set; }

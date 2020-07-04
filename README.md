@@ -6,6 +6,8 @@
 
 C# Client for Bitbucket Cloud
 
+Documentation is at [https://developer.atlassian.com/bitbucket/api/2/reference/](https://developer.atlassian.com/bitbucket/api/2/reference/).
+
 If you're looking for Bitbucket Server API, try [this repository](https://github.com/lvermeulen/Bitbucket.Net).
 
 ## Features

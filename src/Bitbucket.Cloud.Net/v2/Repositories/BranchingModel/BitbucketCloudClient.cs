@@ -16,14 +16,14 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<string> UpdateRepositoryBranchingModelSettingsAsync(string workspaceId, string repositorySlug, BranchingModel branchingModel)
+		public async Task<BranchingModel> UpdateRepositoryBranchingModelSettingsAsync(string workspaceId, string repositorySlug, BranchingModel branchingModel)
 		{
 			var response = await GetBranchingModelUrl(workspaceId, repositorySlug)
 				.AppendPathSegment("/settings")
 				.PutJsonAsync(branchingModel)
 				.ConfigureAwait(false);
 
-			return await HandleResponseAsync<string>(response);
+			return await HandleResponseAsync<BranchingModel>(response);
 		}
 
 		public async Task<BranchingModel> GetRepositoryBranchingModelSettingsAsync(string workspaceId, string repositorySlug)

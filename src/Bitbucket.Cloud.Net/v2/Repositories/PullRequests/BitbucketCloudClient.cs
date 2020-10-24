@@ -23,6 +23,7 @@ namespace Bitbucket.Cloud.Net
 				description = pullRequestCreationParameters.Description,
 				source = pullRequestCreationParameters.Source,
 				destination = pullRequestCreationParameters.Destination,
+				reviewers = pullRequestCreationParameters.Reviewers,
 				close_source_branch = pullRequestCreationParameters.CloseSourceBranch
 			};
 

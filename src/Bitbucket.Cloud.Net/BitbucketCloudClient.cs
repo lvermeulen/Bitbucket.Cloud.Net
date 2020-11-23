@@ -93,17 +93,24 @@ namespace Bitbucket.Cloud.Net
 
 			while (!isLastPage && (maxPages == null || numPages < maxPages))
 			{
-				var selectorResults = await selector(queryParamValues).ConfigureAwait(false);
-				selectorResults.Page = Math.Max(selectorResults.Page, 1);
-				results.AddRange(selectorResults.Values);
-
-				isLastPage = selectorResults.Next == null;
-				if (!isLastPage)
+				try
 				{
-					queryParamValues["page"] = selectorResults.Page + 1;
-				}
+					var selectorResults = await selector(queryParamValues).ConfigureAwait(false);
+					selectorResults.Page = Math.Max(selectorResults.Page, 1);
+					results.AddRange(selectorResults.Values);
 
-				numPages++;
+					isLastPage = selectorResults.Next == null || selectorResults.Size == numPages * selectorResults.PageLen;
+					if (!isLastPage)
+					{
+						queryParamValues["page"] = selectorResults.Page + 1;
+					}
+
+					numPages++;
+				}
+				catch (Exception ex)
+				{
+					throw ex;
+				}
 			}
 
 			return results;

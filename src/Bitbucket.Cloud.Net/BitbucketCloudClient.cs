@@ -97,7 +97,7 @@ namespace Bitbucket.Cloud.Net
 				selectorResults.Page = Math.Max(selectorResults.Page, 1);
 				results.AddRange(selectorResults.Values);
 
-				isLastPage = selectorResults.Next == null;
+				isLastPage = selectorResults.Next == null || selectorResults.Size == numPages * selectorResults.PageLen;
 				if (!isLastPage)
 				{
 					queryParamValues["page"] = selectorResults.Page + 1;

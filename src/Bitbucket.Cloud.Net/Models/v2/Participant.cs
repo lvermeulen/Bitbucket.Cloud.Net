@@ -13,5 +13,17 @@ namespace Bitbucket.Cloud.Net.Models.v2
 
 		[JsonProperty("participated_on")]
 		public DateTime? ParticipatedOn { get; set; }
+
+		/// <summary>
+		/// Used with pull requests, a participant will have a state if they've approved/requested changes on the PR.
+		/// </summary>
+		[JsonConverter(typeof(ParticipantStateConverter))]
+		public ParticipantState State { get; set; }
+
+		/// <summary>
+		/// Despite a Participant being an extension of a user, it has a separate "user" section on it as well.
+		/// </summary>
+		[JsonProperty("user")]
+		public User User { get; set; }
 	}
 }

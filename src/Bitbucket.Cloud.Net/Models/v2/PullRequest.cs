@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Bitbucket.Cloud.Net.Common.Converters;
 using Newtonsoft.Json;
 
@@ -40,5 +41,18 @@ namespace Bitbucket.Cloud.Net.Models.v2
 
 		[JsonProperty("closed_by")]
 		public object ClosedBy { get; set; }
+
+		/// <summary>
+		/// The participants on the pull request. Anyone who's commented, approved, requested changes, etc.
+		/// </summary>
+		[JsonProperty("participants")]
+		public IEnumerable<Participant> Participants { get; set; }
+
+		/// <summary>
+		/// Reviewers on the pull request. Technically, you can be a participant without being a reviewer, and the "Participant" record can have more information. 
+		/// But to that point, the reviewers can also not hae participated in the PR yet.
+		/// </summary>
+		[JsonProperty("reviewers")]
+		public IEnumerable<Participant> Reviewers { get; set; }
 	}
 }

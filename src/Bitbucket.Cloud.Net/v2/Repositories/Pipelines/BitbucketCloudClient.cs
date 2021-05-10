@@ -22,9 +22,14 @@ namespace Bitbucket.Cloud.Net
 		private IFlurlRequest GetPipelineStepUrl(string workspaceId, string repositorySlug, Guid pipelineUuid, string stepId) => GetPipelineStepsUrl(workspaceId, repositorySlug, pipelineUuid)
 			.AppendPathSegment($"/{stepId}");
 
-		public async Task<IEnumerable<Pipeline>> GetRepositoryPipelinesAsync(string workspaceId, string repositorySlug, int? maxPages = null)
+		public async Task<IEnumerable<Pipeline>> GetRepositoryPipelinesAsync(string workspaceId, string repositorySlug, int? maxPages = null, int? page = null, int? pageLength = null, string sort = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
+			var queryParamValues = new Dictionary<string, object>
+			{
+				[nameof(page)] = page,
+				["pagelen"] = pageLength,
+				[nameof(sort)] = sort
+			};
 
 			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
 					await GetPipelinesUrl(workspaceId, repositorySlug)

@@ -11,20 +11,25 @@ namespace Bitbucket.Cloud.Net
 {
 	public partial class BitbucketCloudClient
 	{
-		private IFlurlRequest GetPipelinesUrl(string workspaceId, string repositorySlug) => GetBaseUrl($"2.0/repositories/{workspaceId}/{repositorySlug}/pipelines");
+		private IFlurlRequest GetPipelinesUrl(string workspaceId, string repositorySlug) => GetBaseUrl($"2.0/repositories/{workspaceId}/{repositorySlug}/pipelines/");
 
 		private IFlurlRequest GetPipelinesUrl(string workspaceId, string repositorySlug, Guid pipelineUuid) => GetPipelinesUrl(workspaceId, repositorySlug)
-			.AppendPathSegment($"/pipelines/{pipelineUuid:B}");
+			.AppendPathSegment($"/{pipelineUuid:B}");
 
 		private IFlurlRequest GetPipelineStepsUrl(string workspaceId, string repositorySlug, Guid pipelineUuid) => GetPipelinesUrl(workspaceId, repositorySlug, pipelineUuid)
-			.AppendPathSegment("/steps");
+			.AppendPathSegment("/steps/");
 
 		private IFlurlRequest GetPipelineStepUrl(string workspaceId, string repositorySlug, Guid pipelineUuid, string stepId) => GetPipelineStepsUrl(workspaceId, repositorySlug, pipelineUuid)
 			.AppendPathSegment($"/{stepId}");
 
-		public async Task<IEnumerable<Pipeline>> GetRepositoryPipelinesAsync(string workspaceId, string repositorySlug, int? maxPages = null)
+		public async Task<IEnumerable<Pipeline>> GetRepositoryPipelinesAsync(string workspaceId, string repositorySlug, int? maxPages = null, int? page = null, int? pageLength = null, string sort = null)
 		{
-			var queryParamValues = new Dictionary<string, object>();
+			var queryParamValues = new Dictionary<string, object>
+			{
+				[nameof(page)] = page,
+				["pagelen"] = pageLength,
+				[nameof(sort)] = sort
+			};
 
 			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>
 					await GetPipelinesUrl(workspaceId, repositorySlug)

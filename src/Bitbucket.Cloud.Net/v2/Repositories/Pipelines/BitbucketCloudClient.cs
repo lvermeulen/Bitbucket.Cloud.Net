@@ -11,13 +11,13 @@ namespace Bitbucket.Cloud.Net
 {
 	public partial class BitbucketCloudClient
 	{
-		private IFlurlRequest GetPipelinesUrl(string workspaceId, string repositorySlug) => GetBaseUrl($"2.0/repositories/{workspaceId}/{repositorySlug}/pipelines");
+		private IFlurlRequest GetPipelinesUrl(string workspaceId, string repositorySlug) => GetBaseUrl($"2.0/repositories/{workspaceId}/{repositorySlug}/pipelines/");
 
 		private IFlurlRequest GetPipelinesUrl(string workspaceId, string repositorySlug, Guid pipelineUuid) => GetPipelinesUrl(workspaceId, repositorySlug)
-			.AppendPathSegment($"/pipelines/{pipelineUuid:B}");
+			.AppendPathSegment($"/{pipelineUuid:B}");
 
 		private IFlurlRequest GetPipelineStepsUrl(string workspaceId, string repositorySlug, Guid pipelineUuid) => GetPipelinesUrl(workspaceId, repositorySlug, pipelineUuid)
-			.AppendPathSegment("/steps");
+			.AppendPathSegment("/steps/");
 
 		private IFlurlRequest GetPipelineStepUrl(string workspaceId, string repositorySlug, Guid pipelineUuid, string stepId) => GetPipelineStepsUrl(workspaceId, repositorySlug, pipelineUuid)
 			.AppendPathSegment($"/{stepId}");

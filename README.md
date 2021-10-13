@@ -40,7 +40,7 @@ var client = new Bitbucket.Cloud.Net.BitbucketCloudClient("https://api.bitbucket
 
 ### OAuth Authentication
 
-The following example is [Thanks to yob](https://stackoverflow.com/a/60694503/1215018) for his contribution. First you must obtain an access token. You can do this using [Flurl.Http](https://flurl.dev/) which is already a dependency on this library. You can read more about this authentication method on [Bitbucket Support](https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/).
+The following example is [thanks to yob](https://stackoverflow.com/a/60694503/1215018) for his contribution. First you must obtain an access token. You can do this using [Flurl.Http](https://flurl.dev/) which is already a dependency on this library. You can read more about this authentication method on [Bitbucket Support](https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/).
 
 ```csharp
 var uvalue = "your_username OR consumer_key";

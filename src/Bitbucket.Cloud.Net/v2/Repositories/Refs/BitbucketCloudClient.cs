@@ -16,6 +16,8 @@ namespace Bitbucket.Cloud.Net
 
 		private IFlurlRequest GetRefsBranchesUrl(string workspaceId, string repositorySlug) => GetRefsUrl(workspaceId, repositorySlug, "branches");
 
+        private IFlurlRequest GetRefsBranchNameUrl(string workspaceId, string repositorySlug, string branchName) => GetRefsUrl(workspaceId, repositorySlug, $"branches/{branchName}");
+
 		private IFlurlRequest GetRefsTagsUrl(string workspaceId, string repositorySlug) => GetRefsUrl(workspaceId, repositorySlug, "tags");
 
 		public async Task<IEnumerable<Ref>> GetRepositoryRefsAsync(string workspaceId, string repositorySlug, int? maxPages = null, string q = null, string sort = null)
@@ -68,7 +70,16 @@ namespace Bitbucket.Cloud.Net
 				.ConfigureAwait(false);
 		}
 
-		public async Task<Ref> CreateRepositoryTagAsync(string workspaceId, string repositorySlug, string branchName, string targetHash)
+        public async Task<bool> DeleteRepositoryBranchAsync(string workspaceId, string repositorySlug, string branchName)
+        {
+            var response = await GetRefsBranchNameUrl(workspaceId, repositorySlug, branchName)
+                .DeleteAsync()
+                .ConfigureAwait(false);
+
+            return await HandleResponseAsync(response).ConfigureAwait(false);
+        }
+
+        public async Task<Ref> CreateRepositoryTagAsync(string workspaceId, string repositorySlug, string branchName, string targetHash)
 		{
 			var data = new
 			{

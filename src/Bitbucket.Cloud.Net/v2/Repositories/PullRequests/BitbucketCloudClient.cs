@@ -38,7 +38,9 @@ namespace Bitbucket.Cloud.Net
 		{
 			var queryParamValues = new Dictionary<string, object>
 			{
-				[nameof(q)] = q
+				[nameof(q)] = q,
+				//Include the particiapnts and reviewers with the pull request.
+				["fields"] = "+values.participants,+values.reviewers"
 			};
 
 			return await GetPagedResultsAsync(maxPages, queryParamValues, async qpv =>

@@ -6,9 +6,76 @@
 
 C# Client for Bitbucket Cloud
 
-Documentation is at [https://developer.atlassian.com/bitbucket/api/2/reference/](https://developer.atlassian.com/bitbucket/api/2/reference/).
+Atlassian Bitbucket API documentation is available at [https://developer.atlassian.com/bitbucket/api/2/reference/](https://developer.atlassian.com/bitbucket/api/2/reference/).
 
 If you're looking for Bitbucket Server API, try [this repository](https://github.com/lvermeulen/Bitbucket.Net).
+
+## Quick Start
+
+First, add the [nuget package](https://www.nuget.org/packages/Bitbucket.Cloud.Net/) to the project.
+
+Next the Bitbucket Cloud Client will need to be authenticated. There are three options for doing this. 
+
+- [AppPasswordAuthentication](./src/Bitbucket.Cloud.Net/Common/Authentication/AppPasswordAuthentication.cs)
+- [BasicAuthentication](./src/Bitbucket.Cloud.Net/Common/Authentication/BasicAuthentication.cs)
+- [OAuthAuthentication](./src/Bitbucket.Cloud.Net/Common/Authentication/OAuthAuthentication.cs)
+
+### App Password Authentication
+
+The steps provided by [bitbucket support](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/) to setup the account with an app password must be completed. Then the bitbucket client can authenticate using the following example code.
+
+```csharp
+var credentials = new Bitbucket.Cloud.Net.Common.Authentication.AppPasswordAuthentication("<your_username>", "<your_app_password>");
+var client = new Bitbucket.Cloud.Net.BitbucketCloudClient("https://api.bitbucket.org/", credentials);
+```
+
+### Basic Authentication
+
+Likely the simplest method, however, it is also the least secure and users signing in via SSO may find this method challenging if not impossible.
+
+```csharp
+var credentials = new Bitbucket.Cloud.Net.Common.Authentication.BasicAuthentication("<your_username>", "<your_password>");
+var client = new Bitbucket.Cloud.Net.BitbucketCloudClient("https://api.bitbucket.org/", credentials);
+```
+
+### OAuth Authentication
+
+The following example is [thanks to yob](https://stackoverflow.com/a/60694503/1215018) for his contribution. First an access token must be obtained. This can be acheived using [Flurl.Http](https://flurl.dev/) which is already a dependency on this library. Learn more about this authentication method on [Bitbucket Support](https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/).
+
+```csharp
+var uvalue = "your_username OR consumer_key";
+var pvalue = "your_password OR consumer_secret";
+var urlAccessToken = "https://bitbucket.org/site/oauth2/access_token";
+var response = await urlAccessToken
+                    .WithBasicAuth(uvalue, pvalue)
+                    .PostUrlEncodedAsync(new
+                    {
+                        grant_type = "client_credentials"
+                    })
+                    .ReceiveJson()
+                    .ConfigureAwait(false);
+var token = response.access_token;
+```
+
+Once a token has been obtained, the bitbucket client can be authenticated.
+
+```csharp
+var credentials = new Bitbucket.Cloud.Net.Common.Authentication.OAuthAuthentication(token);
+var client = new Bitbucket.Cloud.Net.BitbucketCloudClient("https://api.bitbucket.org/", credentials);
+```
+
+### Example: Listing all repositories in a workspace
+
+Once the bitbucket client has been authenticated, it can be used for several different operations. For example, the following code will list all the public repositories in the "microsoft" workspace. If the authenticated user has access to the private repositories in a workspace, those will also be listed.
+
+```csharp
+var repos = await client.GetWorkspaceRepositoriesAsync("microsoft")
+                .ConfigureAwait(false);
+foreach(var repo in repos)
+{
+    Console.WriteLine(repo.Name);
+}
+```
 
 ## Features
 * [X] Authentication

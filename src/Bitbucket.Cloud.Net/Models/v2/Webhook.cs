@@ -31,7 +31,7 @@ namespace Bitbucket.Cloud.Net.Models.v2
 		public User Subject { get; set; }
 		public string Type { get; set; }
 
-		[JsonConverter(typeof(WebhookEventsConverter))]
+		[JsonProperty(ItemConverterType = typeof(WebhookEventsConverter))]
 		public IEnumerable<WebhookEvents> Events { get; set; }
 
 		public Guid Uuid { get; set; }
